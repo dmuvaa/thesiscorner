@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Application{% endblock %}</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <!-- Simple Header -->
+        <h1>Thesis Corner</h1>
+        <nav>
+            <a href="{{ url_for('views.home') }}">Thesis Corner</a>
+            <!-- Add more links here as needed -->
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- This content will be overridden by child templates -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 Thesis Corner. All rights reserved.</p>
+    </footer>
+</body>
+</html>
