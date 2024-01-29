@@ -79,7 +79,7 @@ def order(order_id):
 @views.route('/order/<int:order_id>/complete', methods=['POST'])
 @login_required
 def complete_order(order_id):
-    # Logic to mark an order as complete
+    # Logic to mark an order complete
     return redirect(url_for('views.order', order_id=order_id))
 
 # Handle Order Revision
