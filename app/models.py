@@ -41,5 +41,7 @@ class OrderStatus(db.Model):
     status_name = db.Column(db.String(50), nullable=False)
     orders = db.relationship('Order', backref='order_status', lazy=True)
 
+    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+    
     def __repr__(self):
         return f"OrderStatus('{self.status_name}')"
