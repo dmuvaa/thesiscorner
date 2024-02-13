@@ -7,84 +7,87 @@ from .forms import RegistrationForm, LoginForm, OrderForm  # You need to create 
 
 app = Blueprint('app', __name__)
 
-# Home Route
 @views.route('/')
 @views.route('/home')
 def home():
     return render_template('index.html')
 
-# Registration Route
 @views.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('views.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Add user registration logic here
+        # Here, include logic to check if the user is an admin based on form input
+        # and set the user role accordingly
+        user = User(email=form.email.data, username=form.username.data, is_admin=is_admin)
+        db.session.add(user)
+        db.session.commit()
         flash('Your account has been created!', 'success')
+        # Redirect admins to the admin dashboard
+        if user.is_admin:
+            return redirect(url_for('views.admin_dashboard'))
         return redirect(url_for('views.login'))
     return render_template('register.html', title='Register', form=form)
 
-# Login Route
 @views.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('views.home'))
+        return redirect(url_for('views.dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
-        # User login logic here
-        flash('You have been logged in!', 'success')
-        return redirect(url_for('views.home'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember.data)
+            return redirect(url_for('views.dashboard'))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
-# Logout Route
+
+# Define user_dashboard route
+@views.route('/dashboard')
+@login_required
+def user_dashboard():
+    # Dashboard view logic here
+    return render_template('user_dashboard.html')
+
+# Define admin_dashboard route
+@views.route('/admin/dashboard')
+@login_required
+def admin_dashboard():
+    # Ensure this route is accessible only by admins
+    if not current_user.is_admin:
+        return redirect(url_for('views.user_dashboard'))
+    return render_template('admin_dashboard.html')
+
+@views.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
+
+
 @views.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('views.home'))
 
-# New Order Route
 @views.route('/order/new', methods=['GET', 'POST'])
 @login_required
 def new_order():
     form = OrderForm()
     if form.validate_on_submit():
-        # Logic for creating a new order
+        # Process the form data, create a new order, etc.
         flash('Your order has been created!', 'success')
-        return redirect(url_for('views.user_orders'))
-    return render_template('create_order.html', title='New Order', form=form, legend='New Order')
+        return redirect(url_for('views.user_orders'))  # Adjust redirect as necessary
+    return render_template('new_order.html', form=form)
 
-# User Orders Route
 @views.route('/user/<string:username>')
 @login_required
 def user_orders(username):
-    # Logic to display orders of the current user
-    return render_template('user_orders.html', orders=orders)
+    # Your logic to retrieve orders for the given username
+    orders = []  # Placeholder for actual order retrieval logic
+    return render_template('user_orders.html', orders=orders, username=username)
 
-# Admin Dashboard Route
-@views.route('/admin/dashboard')
-@login_required
-def admin_dashboard():
-    """Admin dashboard logic"""
-    return render_template('admin_dashboard.html', orders=orders)
-
-# Order Route
-@views.route('/order/<int:order_id>')
-@login_required
-def order(order_id):
-    """Logic to display a specific order"""
-    return render_template('order.html', title='Order', order=order)
-
-# Handle Order Completion
-@views.route('/order/<int:order_id>/complete', methods=['POST'])
-@login_required
-def complete_order(order_id):
-    # Logic to mark an order complete
-    return redirect(url_for('views.order', order_id=order_id))
-
-# Handle Order Revision
-@views.route('/order/<int:order_id>/revision', methods=['POST'])
-@login_required
-def order_revision(order_id):
-    # Logic to mark an order as under revision
-    return redirect(url_for('views.order', order_id=order_id))
+# Ensure other routes are protected with @login_required and appropriate redirects
+# for unauthenticated users

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome, {{ current_user.username }}</h2>
+<a href="{{ url_for('views.logout') }}">Logout</a>
+<a href="{{ url_for('views.user_orders', username=current_user.username) }}">Your Orders</a>
+{% if current_user.is_admin %}
+<a href="{{ url_for('views.admin_dashboard') }}">Admin Dashboard</a>
+{% endif %}
+{% endblock %}
