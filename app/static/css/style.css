@@ -113,3 +113,49 @@ form input[type="submit"]:hover {
         text-align: center;
     }
 }
+
+/* Add this to your CSS file */
+#paper-calculator {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    margin: auto;
+}
+
+#paper-calculator h3 {
+    text-align: center;
+}
+
+#paper-calculator form {
+    display: flex;
+    flex-direction: column;
+}
+
+#paper-calculator select,
+#paper-calculator input {
+    margin-bottom: 10px;
+}
+
+#paper-calculator button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#paper-calculator #pages {
+    display: flex;
+    align-items: center;
+}
+
+#paper-calculator #pages button {
+    margin: 0 5px;
+}
+
+#priceDisplay {
+    margin: 10px 0;
+    font-weight: bold;
+}
