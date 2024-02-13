@@ -30,7 +30,7 @@ function changePageCount(amount) {
 
 function calculatePrice() {
     // Placeholder logic for price calculation
-    var basePrice = 12; // Base price per page
+    var basePrice = 6; // Base price per page
     var pageCount = parseInt(document.getElementById('pageCount').value, 10);
     var price = basePrice * pageCount; // Multiply by page count
 
