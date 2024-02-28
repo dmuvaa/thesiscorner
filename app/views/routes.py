@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, flash, redirect, request, Blueprint, session
 from flask_login import login_user, current_user, logout_user, login_required
 from . import views
 from app import db
@@ -88,6 +88,20 @@ def user_orders(username):
     # Your logic to retrieve orders for the given username
     orders = []  # Placeholder for actual order retrieval logic
     return render_template('user_orders.html', orders=orders, username=username)
+
+@views.route('/order-form')
+def order_form():
+    # Check if the data is in localStorage
+    if 'price' in request.args:
+        # If using GET request and URL parameters
+        price = request.args.get('price')
+    else:
+        # If using Flask session (the data needs to be stored in the session on the backend first)
+        price = session.get('calculatedPrice', 0)
+
+    # Pass the stored data to the template
+    return render_template('order_form.html', price=price)
+
 
 # Ensure other routes are protected with @login_required and appropriate redirects
 # for unauthenticated users
