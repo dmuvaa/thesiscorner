@@ -1,0 +1,33 @@
+<!-- new_order.html -->
+{% extends "base.html" %}
+
+{% block title %}New Order{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>New Order</h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.order_details.label(class="form-control-label") }}
+            {{ form.order_details(class="form-control") }}
+            {% if form.order_details.errors %}
+                {% for error in form.order_details.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.quantity.label(class="form-control-label") }}
+            {{ form.quantity(class="form-control") }}
+            {% if form.quantity.errors %}
+                {% for error in form.quantity.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- Add more fields as necessary -->
+        <button type="submit" class="btn btn-primary">Submit Order</button>
+    </form>
+</div>
+{% endblock %}

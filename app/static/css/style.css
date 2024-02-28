@@ -42,13 +42,13 @@ nav a:hover {
     background: #444;
 }
 
-/* Footer */
+/* Footer style */
 footer {
     background: #333;
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -111,5 +111,96 @@ form input[type="submit"]:hover {
 
     nav, footer {
         text-align: center;
+    }
+}
+
+/* Calculator Section Styling */
+.calculator {
+    max-width: 350px;
+    background-color: #f8f9fa;
+    margin: 2em auto;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.calculator h2 {
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.calculator label {
+    display: block;
+    margin: 0.5em 0;
+    color: #555;
+}
+
+.calculator select,
+.calculator input {
+    width: calc(100% - 2em);
+    margin: 0.5em auto;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.calculator .page-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator .page-counter button {
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.calculator .page-counter button:active,
+.calculator .page-counter button:focus {
+    outline: none;
+}
+
+.calculator .page-counter input {
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 3em;
+}
+
+.calculator .price-display {
+    margin: 1em 0;
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+}
+
+.calculator button#continueToOrder {
+    width: calc(100% - 2em);
+    padding: 0.5em;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.5em;
+}
+
+.calculator button#continueToOrder:hover {
+    background-color: #218838;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 400px) {
+    .calculator {
+        width: 95%;
     }
 }

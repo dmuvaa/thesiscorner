@@ -7,10 +7,69 @@
         <h2>Welcome to Thesis Corner!</h2>
         <p>This is the home page of Thesis Corner. We provide various services including theses, dissertations, articles, etc.</p>
 
-        <!-- Add more content here as needed -->
+        <!-- Add content here as needed -->
         <section>
             <h3>About Us</h3>
             <p>We provide quality Essay services to all our clients.</p>
+        </section>
+
+        <section>
+            <div id="price-calculator" class="calculator">
+                <h2>Calculate your paper price</h2>
+                <label for="paperType">Type of paper</label>
+                <select id="paperType">
+                    <option value="argumentative">Argumentative essays</option>
+                    <option value="analytical">Analytical essays</option>
+                    <option value="dissertation">Dissertation/Dissertation Chapter</option>
+                    <option value="journal">Journal</option>
+                    <option value="bookreview">Book Review</option>
+                    <option value="literature">Literature Analysis/Review</option>
+                    <option value="businessplan">Business Plan</option>
+                    <option value="article">Article</option>
+                    <option value="general">General Task</option>
+                    <option value="thesis">Thesis/Thesis Chapter</option>
+                    <!-- Add more paper types as needed -->
+                </select>
+            
+                <label for="academicLevel">Academic level</label>
+                <select id="academicLevel">
+                    <option value="high_school">High school</option>
+                    <option value="college">College</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="masters">Master's</option>
+                    <option value="phd">PhD</option>
+                    <!-- Add more academic levels as needed -->
+                </select>
+            
+                <label for="deadline">Deadline</label>
+                <select id="deadline">
+                    <option value="8_hours">8 Hours</option>
+                    <option value="12_hours">12 Hours</option>
+                    <option value="24_hours">24 Hours</option>
+                    <option value="36_hours">36 Hours</option>
+                    <option value="48_hours">48 Hours</option>
+                    <option value="3_days">3 days</option>
+                    <option value="5_days">5 days</option>
+                    <option value="7_days">7 Days</option>
+                    <option value="14_days">14 Days</option>
+                    <!-- Add more deadlines as needed -->
+                </select>
+            
+                <label for="pages">Pages</label>
+                <div class="page-counter">
+                    <button type="button" id="decreasePageCount">-</button>
+                    <input type="number" id="pageCount" value="1" min="1">
+                    <button type="button" id="increasePageCount">+</button>
+                    (275 words)
+                </div>
+            
+                <div class="price-display">
+                    Approximate price: <span id="price">$12</span>
+                </div>
+            
+                <button type="button" id="continueToOrder">CONTINUE TO ORDER</button>
+            </div>
+            
         </section>
 
         <section>
@@ -18,4 +77,7 @@
             <p>Have questions? <a href="mailto:contact@myapp.com">Email us</a>.</p>
         </section>
     </div>
+
+    <!-- Include the calculator.js file -->
+    <script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
 {% endblock %}
