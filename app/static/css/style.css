@@ -204,3 +204,150 @@ form input[type="submit"]:hover {
         width: 95%;
     }
 }
+
+/* General Styles */
+.order-form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.order-form-container h1 {
+    color: #333;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.order-form-container p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Form Section Styling */
+.form-section {
+    margin-bottom: 2em;
+}
+
+.form-section h2 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.form-section label {
+    display: block;
+    margin: 0.5em 0 0.2em;
+    color: #333;
+    font-size: 1em;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-section textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Button Styling */
+.form-section input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-section input[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+/* Order Summary Styling */
+.price-summary {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.price-summary p {
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Input and Select box styling */
+.order-form-container input[type="text"],
+.order-form-container input[type="number"],
+.order-form-container input[type="email"],
+.order-form-container select,
+.order-form-container textarea {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* File Input Styling */
+.order-form-container input[type="file"] {
+    border: none;
+}
+
+/* Button Styling */
+.order-form-container button,
+.order-form-container input[type="submit"],
+.order-form-container input[type="button"] {
+    background-color: #5cb85c;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.order-form-container button:hover,
+.order-form-container input[type="submit"]:hover,
+.order-form-container input[type="button"]:hover {
+    background-color: #4cae4c;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .order-form-container {
+        width: auto;
+        padding: 15px;
+    }
+    
+    .order-form-container input[type="text"],
+    .order-form-container input[type="number"],
+    .order-form-container input[type="email"],
+    .order-form-container select,
+    .order-form-container textarea {
+        width: 90%;
+    }
+}

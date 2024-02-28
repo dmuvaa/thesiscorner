@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Place an Order{% endblock %}
+
+{% block content %}
+<div class="order-form-container">
+    <h1>PLACE AN ORDER</h1>
+    <p>It’s fast, secure, and confidential</p>
+
+    <form action="{{ url_for('views.new_order') }}" method="post" id="orderForm">
+        <div class="form-section">
+            <h2>Paper details</h2>
+            
+            <label for="academicLevel">Academic level</label>
+            <select name="academicLevel" id="academicLevel">
+                <option value="high_school">High school</option>
+                <option value="undergraduate">Undergraduate</option>
+                <option value="masters">Master's</option>
+                <option value="phd">Ph.D.</option>
+            </select>
+
+            <label for="paperType">Type of paper</label>
+            <input type="text" id="paperType" name="paperType" readonly>
+
+            <label for="discipline">Discipline</label>
+            <input type="text" id="discipline" name="discipline">
+
+            <label for="topic">Topic</label>
+            <input type="text" id="topic" name="topic" placeholder="Writer's choice">
+
+            <label for="instructions">Paper instructions</label>
+            <textarea id="instructions" name="instructions"></textarea>
+
+            <label for="additionalMaterials">Additional materials</label>
+            <input type="file" id="additionalMaterials" name="additionalMaterials" multiple>
+
+            <label for="paperFormat">Paper format</label>
+            <select name="paperFormat" id="paperFormat">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago/Turabian</option>
+                <option value="harvard">Harvard</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="deadline">Deadline</label>
+            <select name="deadline" id="deadline">
+                <!-- Populate with options -->
+            </select>
+
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" name="pages" min="1" readonly>
+
+            <label for="spacing">Spacing</label>
+            <select name="spacing" id="spacing">
+                <option value="double">Double</option>
+                <option value="single">Single</option>
+            </select>
+
+            <label for="sources">Sources to be cited</label>
+            <input type="number" id="sources" name="sources" min="0">
+        </div>
+
+        <div class="form-section price-summary">
+            <h2>Your order summary</h2>
+            <p id="selectedPaperType">{{ session.get('paperType', 'Type of Paper') }}</p>
+            <p id="selectedAcademicLevel">{{ session.get('academicLevel', 'Academic Level') }}</p>
+            <p id="selectedDeadline">{{ session.get('deadline', 'Deadline') }}</p>
+            <p id="selectedPageCount">{{ session.get('pageCount', 1) }} page(s)</p>
+            <p id="calculatedPrice">Approximate price: {{ session.get('price', '0') }}</p>
+
+            <input type="submit" value="Submit Order">
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        // Function to populate form fields from localStorage or Flask session
+    function populateFields() {
+        document.getElementById('paperType').value = localStorage.getItem('paperType') || '{{ session.get('paperType', '') }}';
+        document.getElementById('academicLevel').value = localStorage.getItem('academicLevel') || '{{ session.get('academicLevel', '') }}';
+        document.getElementById('deadline').value = localStorage.getItem('deadline') || '{{ session.get('deadline', '') }}';
+        document.getElementById('pages').value = localStorage.getItem('pageCount') || '{{ session.get('pageCount', '1') }}';
+        // Update order summary initially
+        updateOrderSummary();
+    }
+    
+        // Function to update order summary dynamically
+    function updateOrderSummary() {
+        document.getElementById('selectedPaperType').textContent = document.getElementById('paperType').value;
+        document.getElementById('selectedAcademicLevel').textContent = document.getElementById('academicLevel').options[document.getElementById('academicLevel').selectedIndex].text;
+        document.getElementById('selectedDeadline').textContent = document.getElementById('deadline').options[document.getElementById('deadline').selectedIndex].text;
+        document.getElementById('selectedPageCount').textContent = document.getElementById('pages').value + ' page(s)';
+        // Assuming you have a function to calculate price based on these selections
+        calculateAndDisplayPrice();
+    }
+    
+    // Example function to calculate and display price
+    function calculateAndDisplayPrice() {
+        // Placeholder for actual price calculation logic
+        let price = parseInt(document.getElementById('pages').value, 10) * 20; // Example calculation
+        document.getElementById('calculatedPrice').textContent = 'Approximate price: $' + price;
+    }
+    
+    // Populate fields initially
+    populateFields();
+    
+    // Add event listeners to form elements to update order summary on change
+    document.getElementById('academicLevel').addEventListener('change', updateOrderSummary);
+    document.getElementById('deadline').addEventListener('change', updateOrderSummary);
+    document.getElementById('pages').addEventListener('input', updateOrderSummary);
+    
+    // More event listeners can be added here for other form elements as needed
+});
+</script>
+    
+
+{% endblock %}
