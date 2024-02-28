@@ -3,3 +3,5 @@ app/.env
 app/auth/__pycache__/user_auth.cpython-38.pyc
 .env
 *.pyc
+venv
+
