@@ -5,3 +5,5 @@ app/auth/__pycache__/user_auth.cpython-38.pyc
 *.pyc
 venv
 env
+pyproject.toml
+/frontend/node_modules
