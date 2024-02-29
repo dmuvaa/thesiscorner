@@ -18,9 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Navbar />
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <div className="flex flex-col min-h-screen items-stretch">
+        <Navbar />
+        <div className="flex-grow bg-zinc-100 dark:bg-zinc-700 text-black dark:text-zinc-50">
+          <main className="flex-shrink-0 flex items-center justify-center mt-20">{children}</main>
+        </div>
+        <div className="flex-shrink-0">
+          <Navbar />
+        </div>
+      </div>
+    </>
   );
 }
+// className={inter.className}
