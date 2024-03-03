@@ -68,7 +68,10 @@ function Calculator() {
               Type of paper
             </label>
             <div className="mt-2">
-              <select id="paperType" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+              <select
+                id="paperType"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+              >
                 <option value="argumentative">Argumentative essays</option>
                 <option value="analytical">Analytical essays</option>
                 <option value="dissertation">
@@ -83,52 +86,56 @@ function Calculator() {
                 <option value="thesis">Thesis/Thesis Chapter</option>
               </select>
             </div>
-            </div>
           </div>
         </div>
-
-        <label htmlFor="academicLevel">Academic level</label>
-        <select id="academicLevel">
-          <option value="high_school">High school</option>
-          <option value="college">College</option>
-          <option value="undergraduate">Undergraduate</option>
-          <option value="masters">Master's</option>
-          <option value="phd">PhD</option>
-        </select>
-
-        <label htmlFor="deadline">Deadline</label>
-        <select id="deadline">
-          <option value="8_hours">8 Hours</option>
-          <option value="12_hours">12 Hours</option>
-          <option value="24_hours">24 Hours</option>
-          <option value="36_hours">36 Hours</option>
-          <option value="48_hours">48 Hours</option>
-          <option value="3_days">3 days</option>
-          <option value="5_days">5 days</option>
-          <option value="7_days">7 Days</option>
-          <option value="14_days">14 Days</option>
-        </select>
-
-        <label htmlFor="pages">Pages</label>
-        <div className="page-counter">
-          <button type="button" id="decreasePageCount">
-            -
-          </button>
-          <input type="number" id="pageCount" value="1" min="1" readOnly />
-          <button type="button" id="increasePageCount">
-            +
-          </button>
-          (275 words)
-        </div>
-
-        <div className="price-display">
-          Approximate price: <span id="price">$12</span>
-        </div>
-
-        <button type="button" id="continueToOrder">
-          CONTINUE TO ORDER
-        </button>
       </div>
+
+      <label
+        htmlFor="academicLevel"
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        Academic level
+      </label>
+      <select id="academicLevel">
+        <option value="high_school">High school</option>
+        <option value="college">College</option>
+        <option value="undergraduate">Undergraduate</option>
+        <option value="masters">Master's</option>
+        <option value="phd">PhD</option>
+      </select>
+
+      <label htmlFor="deadline">Deadline</label>
+      <select id="deadline">
+        <option value="8_hours">8 Hours</option>
+        <option value="12_hours">12 Hours</option>
+        <option value="24_hours">24 Hours</option>
+        <option value="36_hours">36 Hours</option>
+        <option value="48_hours">48 Hours</option>
+        <option value="3_days">3 days</option>
+        <option value="5_days">5 days</option>
+        <option value="7_days">7 Days</option>
+        <option value="14_days">14 Days</option>
+      </select>
+
+      <label htmlFor="pages">Pages</label>
+      <div className="page-counter">
+        <button type="button" id="decreasePageCount">
+          -
+        </button>
+        <input type="number" id="pageCount" value="1" min="1" readOnly />
+        <button type="button" id="increasePageCount">
+          +
+        </button>
+        (275 words)
+      </div>
+
+      <div className="price-display">
+        Approximate price: <span id="price">$12</span>
+      </div>
+
+      <button type="button" id="continueToOrder">
+        CONTINUE TO ORDER
+      </button>
     </form>
   );
 }
