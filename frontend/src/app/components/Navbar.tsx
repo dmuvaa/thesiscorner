@@ -3,7 +3,7 @@ export default function Navbar() {
   return (
     <>
       <div>
-        <nav className="flex items-center justify-between flex-wrap bg-gradient-to-r from-[#191021] from-10% to-[#19d6e1] to-90% p-6">
+        <nav className="flex items-center justify-between flex-wrap bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% p-6">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
             <span className="font-semibold text-xl tracking-tight">
               Thesis Corner
@@ -12,7 +12,7 @@ export default function Navbar() {
           <div className="block lg:hidden">
             <button
               id="nav"
-              className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded text-white border-gray-600 hover:text-white hover:border-white"
             >
               <svg
                 className="fill-current h-3 w-3"
@@ -28,13 +28,13 @@ export default function Navbar() {
             <div className="text-sm lg:flex-grow">
               <a
                 href="#about-us"
-                className="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-white mr-4"
+                className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 mr-4"
               >
                 About Us
               </a>
               <a
                 href="#resources"
-                className="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-white mr-4"
+                className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 mr-4"
               >
                 Resources
               </a>
