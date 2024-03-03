@@ -1,10 +1,11 @@
 /** @format */
 
 import Calculator from './calculator';
+import PriceCalculator from './Form';
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 px-24">
       <div className="col-span-1 mx-4">
         <h1 className="text-4xl font-bold text-gray-800">
           Welcome to our website
@@ -18,7 +19,7 @@ export default function Home() {
         </p>
       </div>
       <div className="p-4">
-        <Calculator />
+        <PriceCalculator />
       </div>
     </div>
   );
