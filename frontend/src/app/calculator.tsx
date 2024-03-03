@@ -58,9 +58,9 @@ function Calculator() {
       {" "}
       {/*className="mx-4 container p-4 flex flex-1 justify-content-between align-content-start border-2 rounded shadow"*/}
       <div className="space-y-12">
-        <div className="border-b border-gray-900/10 bg-pink-500 pb-12">
-          <div className="flex-auto w-full">
-            <h1 className="text-lg font-bold leading-7 text-gray-900">
+        <div className="bordered border-gray-600 flex flex-col justify-items-center border-gray-900/10 bg-pink-500 pb-12">
+          <div className="grow w-full">
+            <h1 className=" text-lg font-bold leading-7 text-gray-900">
               Calculate your paper price
             </h1>
           </div>
