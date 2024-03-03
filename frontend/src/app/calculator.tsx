@@ -53,14 +53,33 @@ function Calculator() {
     return `$${calculatedPrice.toFixed(2)}`;
   }
 
+  const [page, setPage] = useState(1);
+
+  const incrementPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const decrementPage = () => {
+    if (page > 1) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value) && value > 0) {
+      setPage(value);
+    }
+  };
+
   return (
     <form>
       {" "}
       {/*className="mx-4 container p-4 flex flex-1 justify-content-between align-content-start border-2 rounded shadow"*/}
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 bg-pink-500 pb-12">
-          <div className="flex-auto w-full">
-            <h1 className="text-lg font-bold leading-7 text-gray-900">
+      <div className="bordered border-gray-600 flex flex-col justify-items-center border-gray-900/10 bg-white rounded-md pb-12 space-y-12">
+        <div className="mx-3">
+          <div className="grow w-full">
+            <h1 className=" text-lg font-bold leading-7 text-gray-900">
               Calculate your paper price
             </h1>
           </div>
@@ -75,7 +94,7 @@ function Calculator() {
               <div className="mt-2">
                 <select
                   id="paperType"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  className="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
                   <option value="argumentative">Argumentative essays</option>
                   <option value="analytical">Analytical essays</option>
@@ -100,7 +119,10 @@ function Calculator() {
           >
             Academic level
           </label>
-          <select id="academicLevel">
+          <select
+            id="academicLevel"
+            className="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+          >
             <option value="high_school">High school</option>
             <option value="college">College</option>
             <option value="undergraduate">Undergraduate</option>
@@ -109,7 +131,10 @@ function Calculator() {
           </select>
 
           <label htmlFor="deadline">Deadline</label>
-          <select id="deadline">
+          <select
+            id="deadline"
+            className="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+          >
             <option value="8_hours">8 Hours</option>
             <option value="12_hours">12 Hours</option>
             <option value="24_hours">24 Hours</option>
@@ -121,23 +146,34 @@ function Calculator() {
             <option value="14_days">14 Days</option>
           </select>
 
-          <label htmlFor="pages">Pages</label>
-          <div className="page-counter">
-            <button type="button" id="decreasePageCount">
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={decrementPage}
+              className="bg-gray-200 p-2 rounded"
+              disabled={page === 1}
+            >
               -
             </button>
-            <input type="number" id="pageCount" value="1" min="1" readOnly />
-            <button type="button" id="increasePageCount">
+            <input
+              type="number"
+              value={page}
+              onChange={handleInputChange}
+              className="p-2 border rounded"
+            />
+            <button onClick={incrementPage} className="bg-gray-200 p-2 rounded">
               +
             </button>
-            (275 words)
           </div>
 
           <div className="price-display">
             Approximate price: <span id="price">$12</span>
           </div>
 
-          <button type="button" id="continueToOrder">
+          <button
+            type="button"
+            id="continueToOrder"
+            className="border-b border-gray-100 bg-red-400 hover:bg-red-500"
+          >
             CONTINUE TO ORDER
           </button>
         </div>
