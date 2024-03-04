@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 
@@ -32,6 +33,8 @@ def create_app():
     from .views.routes import views as views_blueprint
     from .views import routes as views_routes
     app.register_blueprint(views_blueprint, url_prefix='/api')
+
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
     return app
