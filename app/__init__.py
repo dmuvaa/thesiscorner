@@ -28,8 +28,10 @@ def create_app():
     from .auth import routes as auth_routes
     app.register_blueprint(auth_blueprint)
 
-    from .views import views as views_blueprint
+
+    from .views.routes import views as views_blueprint
     from .views import routes as views_routes
-    app.register_blueprint(views_blueprint)
+    app.register_blueprint(views_blueprint, url_prefix='/api')
+
 
     return app
