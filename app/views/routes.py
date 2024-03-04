@@ -1,107 +1,101 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint, session
-from flask_login import login_user, current_user, logout_user, login_required
-from . import views
-from app import db
-from app.models import User, Order
-from .forms import RegistrationForm, LoginForm, OrderForm  # You need to create these form classes
+from flask import Blueprint, jsonify, request, make_response, current_app
+from werkzeug.security import generate_password_hash, check_password_hash
+import jwt
+import datetime
+from functools import wraps
+from . import db
+from .models import User, Order
 
-app = Blueprint('app', __name__)
+views = Blueprint('views', __name__)
 
-@views.route('/')
-@views.route('/home')
-def home():
-    return render_template('index.html')
-
-@views.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('views.home'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        # Here, include logic to check if the user is an admin based on form input
-        # and set the user role accordingly
-        user = User(email=form.email.data, username=form.username.data, is_admin=is_admin)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created!', 'success')
-        # Redirect admins to the admin dashboard
-        if user.is_admin:
-            return redirect(url_for('views.admin_dashboard'))
-        return redirect(url_for('views.login'))
-    return render_template('register.html', title='Register', form=form)
-
-@views.route('/login', methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('views.dashboard'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember.data)
-            return redirect(url_for('views.dashboard'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get('x-access-token')
+        if not token:
+            return jsonify({'message': 'Token is missing!'}), 401
+        try:
+            data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=["HS256"])
+            current_user = User.query.get(data['user_id'])
+        except:
+            return jsonify({'message': 'Token is invalid!'}), 401
+        return f(current_user, *args, **kwargs)
+    return decorated
 
 
-# Define user_dashboard route
-@views.route('/dashboard')
-@login_required
-def user_dashboard():
-    # Dashboard view logic here
-    return render_template('user_dashboard.html')
+@views.route('/users/signup', methods=['POST'])
+def signup_user():
+    data = request.get_json()
+    hashed_password = generate_password_hash(data['password'], method='sha256')
+    new_user = User(username=data['username'], email=data['email'], password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'Registered successfully!'}), 201
 
-# Define admin_dashboard route
-@views.route('/admin/dashboard')
-@login_required
-def admin_dashboard():
-    # Ensure this route is accessible only by admins
-    if not current_user.is_admin:
-        return redirect(url_for('views.user_dashboard'))
-    return render_template('admin_dashboard.html')
+@views.route('/users/login', methods=['POST'])
+def login_user():
+    auth = request.authorization
+    if not auth or not auth.username or not auth.password:
+        return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required!"'})
+    user = User.query.filter_by(username=auth.username).first()
+    if not user or not check_password_hash(user.password, auth.password):
+        return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required!"'})
+    token = jwt.encode({'user_id': user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'])
+    return jsonify({'token': token})
 
-@views.route('/dashboard')
-@login_required
-def dashboard():
-    return render_template('dashboard.html')
+@views.route('/orders', methods=['POST'])
+@token_required
+def create_order(current_user):
+    data = request.get_json()
+    new_order = Order(essay_details=data['essayDetails'], due_date=data['dueDate'], user_id=current_user.id)
+    db.session.add(new_order)
+    db.session.commit()
+    return jsonify({'message': 'Order placed successfully!'}), 201
 
+@views.route('/orders', methods=['GET'])
+@token_required
+def get_orders(current_user):
+    if current_user.id != 1:
+        return jsonify({'message': 'Unauthorized'}), 401
+    orders = Order.query.all()
+    return jsonify([{
+        'id': order.id,
+        'essay_details': order.essay_details,
+        'due_date': order.due_date,
+        'status': order.status,
+        'user_id': order.user_id
+    } for order in orders]), 200
 
-@views.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('views.home'))
+@views.route('/orders/<int:order_id>/submit', methods=['PUT'])
+@token_required
+def submit_work(current_user, order_id):
+    order = Order.query.get_or_404(order_id)
+    if order.user_id != current_user.id:
+        return jsonify({'message': 'Unauthorized'}), 403
+    data = request.get_json()
+    order.submission = data['submission']
+    order.status = 'submitted'
+    db.session.commit()
+    return jsonify({'message': 'Order submitted successfully'}), 200
 
-@views.route('/order/new', methods=['GET', 'POST'])
-@login_required
-def new_order():
-    form = OrderForm()
-    if form.validate_on_submit():
-        # Process the form data, create a new order, etc.
-        flash('Your order has been created!', 'success')
-        return redirect(url_for('views.user_orders'))  # Adjust redirect as necessary
-    return render_template('new_order.html', form=form)
+@views.route('/orders/<int:order_id>/revision', methods=['PUT'])
+@token_required
+def request_revision(current_user, order_id):
+    order = Order.query.get_or_404(order_id)
+    if order.user_id != current_user.id:
+        return jsonify({'message': 'Unauthorized'}), 403
+    data = request.get_json()
+    order.feedback = data['feedback']
+    order.status = 'revision requested'
+    db.session.commit()
+    return jsonify({'message': 'Revision requested successfully'}), 200
 
-@views.route('/user/<string:username>')
-@login_required
-def user_orders(username):
-    # Your logic to retrieve orders for the given username
-    orders = []  # Placeholder for actual order retrieval logic
-    return render_template('user_orders.html', orders=orders, username=username)
-
-@views.route('/order-form')
-def order_form():
-    # Check if the data is in localStorage
-    if 'price' in request.args:
-        # If using GET request and URL parameters
-        price = request.args.get('price')
-    else:
-        # If using Flask session (the data needs to be stored in the session on the backend first)
-        price = session.get('calculatedPrice', 0)
-
-    # Pass the stored data to the template
-    return render_template('order_form.html', price=price)
-
-
-# Ensure other routes are protected with @login_required and appropriate redirects
-# for unauthenticated users
+@views.route('/orders/<int:order_id>/accept', methods=['PUT'])
+@token_required
+def accept_work(current_user, order_id):
+    order = Order.query.get_or_404(order_id)
+    if order.user_id != current_user.id:
+        return jsonify({'message': 'Unauthorized'}), 403
+    order.status = 'completed'
+    db.session.commit()
+    return jsonify({'message': 'Order completed successfully'}), 200
