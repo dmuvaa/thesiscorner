@@ -3,8 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
 from functools import wraps
-from . import db
-from .models import User, Order
+from .. import db
+from ..models import User, Order
 
 views = Blueprint('views', __name__)
 
@@ -23,10 +23,14 @@ def token_required(f):
     return decorated
 
 
+@views.route('/', methods=['GET'])
+def home():
+    return jsonify({'Message': 'Welcome to Thesiscorner'}), 200
+
 @views.route('/users/signup', methods=['POST'])
 def signup_user():
     data = request.get_json()
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(data['password'])
     new_user = User(username=data['username'], email=data['email'], password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
