@@ -64,11 +64,11 @@ function PriceCalculator() {
   );
 
   useEffect(() => {
-    async function finalPrice() {
+    function finalPrice() {
       setIsLoading(true);
       try {
         const calculatedPrice = calcPrice();
-        setPrice(Number(calculatedPrice));
+        setPrice(calculatedPrice);
       } catch (error) {
         setError(error as null); // Explicitly type the setError state setter function to accept null as its argument
       } finally { 
