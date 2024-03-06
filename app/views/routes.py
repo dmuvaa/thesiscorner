@@ -47,6 +47,25 @@ def login_user():
     token = jwt.encode({'user_id': user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'])
     return jsonify({'token': token})
 
+@views.route('/users/<username>', methods=['GET'])
+@token_required
+def get_user(current_user, username):
+    if current_user.username != username and not current_user.is_admin:
+        return jsonify({'message': 'Unauthorized'}), 403
+
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    user_data = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'image_file': user.image_file
+    }
+
+    return jsonify(user_data), 200
+
 @views.route('/orders', methods=['POST'])
 @token_required
 def create_order(current_user):
