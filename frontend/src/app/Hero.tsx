@@ -20,7 +20,7 @@ const HeroSection = () => {
           <button className="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded mr-4">
             Order Now
           </button>
-          <button className="text-white font-bold text-xl py-4 px-8 border-2 rounded">
+          <button className="text-white font-bold text-xl py-4 px-8 border-3 border-gray-900/10 rounded">
             Free Inquiry
           </button>
         </div>
