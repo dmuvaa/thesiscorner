@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <>
+      <Navbar />
       <div className="flex flex-col min-h-screen items-stretch">
-        <Navbar />
         <div className="flex-grow bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% ">
           <main className="flex-shrink-0 flex items-center justify-center mt-20">
             {children}
