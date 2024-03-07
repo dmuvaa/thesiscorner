@@ -1,0 +1,34 @@
+{
+    "user": "John Doe",
+    "orders": [
+        {
+            "orderNumber": "12345",
+            "date": "2022-01-01",
+            "status": "active",
+            "items": [
+                {
+                    "title": "Article A",
+                    "wordCount": 1000,
+                    "price": 50.00
+                },
+                {
+                    "title": "Article B",
+                    "wordCount": 1500,
+                    "price": 75.00
+                }
+            ]
+        },
+        {
+            "orderNumber": "67890",
+            "date": "2022-02-15",
+            "status": "completed",
+            "items": [
+                {
+                    "title": "Article C",
+                    "wordCount": 2000,
+                    "price": 100.00
+                }
+            ]
+        }
+    ]
+}
