@@ -9,14 +9,7 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <nav>
-        <div>
-          <button>Dashboard</button>
-          <button>Profile</button>
-          <button>Settings</button>
-        </div>
-      </nav>
+      
 
       {children}
     </section>

@@ -1,7 +1,7 @@
 /** @format */
 
 import Calculator from "./calculator";
-import PriceCalculator from "./Form";
+import PriceCalculator from "./Form2";
 import Hero from "./Hero";
 
 export default function Home() {

@@ -68,7 +68,7 @@ function PriceCalculator() {
       setIsLoading(true);
       try {
         const calculatedPrice = calcPrice();
-        setPrice(calculatedPrice);
+        setPrice(Number(calculatedPrice)); // Convert the calculated price to a number before setting it as the new price state
       } catch (error) {
         setError(error as null); // Explicitly type the setError state setter function to accept null as its argument
       } finally { 
