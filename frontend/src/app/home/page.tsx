@@ -1,8 +1,8 @@
 /** @format */
 
-import Calculator from "./calculator";
-import PriceCalculator from "./Form";
-import Hero from "./Hero";
+// import Calculator from "./calculator";
+import PriceCalculator from "../Form";
+import Hero from "../Hero";
 
 export default function Home() {
   return (

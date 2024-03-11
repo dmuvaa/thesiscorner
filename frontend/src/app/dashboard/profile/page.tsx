@@ -2,6 +2,11 @@
 
 import React from "react";
 import Dashboard from "../Dashboard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile Page",
+};
 
 const Profile: React.FC = () => {
   return (
