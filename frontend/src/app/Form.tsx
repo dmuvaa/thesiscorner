@@ -68,7 +68,7 @@ function PriceCalculator() {
       setIsLoading(true);
       try {
         const calculatedPrice = calcPrice();
-        setPrice(Number(calculatedPrice)); // Convert the calculated price to a number before setting it as the new price state
+        setPrice(calculatedPrice); // Convert the calculated price to a number before setting it as the new price state
       } catch (error) {
         setError(error as null); // Explicitly type the setError state setter function to accept null as its argument
       } finally { 
@@ -185,7 +185,7 @@ function PriceCalculator() {
         </div>
 
         <div className="text-xl font-bold mb-2">
-          Total Price: $ {isLoading ? "Calculating..." : error ? error : price}
+          Total Price: {isLoading ? "Calculating..." : error ? error : price}
         </div>
 
         <button

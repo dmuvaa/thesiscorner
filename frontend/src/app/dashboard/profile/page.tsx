@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import Dashboard from "../Dashboard";
 
 const Profile: React.FC = () => {
   return (
@@ -8,6 +9,7 @@ const Profile: React.FC = () => {
       <h1>Profile Page</h1>
       <p>Welcome to your profile page!</p>
       {/* Add your profile information here */}
+      <Dashboard />
     </div>
   );
 };
