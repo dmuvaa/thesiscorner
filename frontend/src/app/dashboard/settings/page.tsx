@@ -3,6 +3,7 @@
 "use client";
 import React, { useState } from "react";
 
+
 const Settings: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [notifications, setNotifications] = useState(true);
