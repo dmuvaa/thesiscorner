@@ -1,6 +1,7 @@
+"use client";
 /** @format */
 
-("use client");
+
 import React, { useEffect, useState } from "react";
 
 // Example implementation of getPreviousOrders
