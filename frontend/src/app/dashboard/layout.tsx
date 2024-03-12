@@ -22,14 +22,16 @@ export default function DashboardLayout({
     email: "john@gmail.com",
     role: "admin",
   };
+
+  
   return (
     <section>
       <AdminNavbar user={user} />
-      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-        <div className="w-full flex-none md:w-64">
+      <div className="min-h-screen grid grid-cols-1 md:grid-cols-4 gap-4 mx-12 ">
+        <div className="">
           <SideNav />
         </div>
-        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+        <div className="col-span-3 p-6  md:p-12 border md:min-h-screen mx-8 my-8">
           {children}
         </div>
       </div>

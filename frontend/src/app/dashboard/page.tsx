@@ -4,7 +4,7 @@ import React from "react";
 
 const Dashboard: React.FC = () => {
   return (
-    <div>
+    <div className="">
       <h1>Dashboard</h1>
       <p>Welcome to the dashboard!</p>
     </div>

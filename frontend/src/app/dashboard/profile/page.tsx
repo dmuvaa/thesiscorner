@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const Profile: React.FC = () => {
   return (
-    <div className="w-full min-h-screen">
+    <div className="">
       <h1>Profile Page</h1>
       <p>Welcome to your profile page!</p>
       {/* Add your profile information here */}
