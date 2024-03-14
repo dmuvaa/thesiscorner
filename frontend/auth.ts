@@ -1,9 +1,9 @@
 import NextAuth from 'next-auth';
 import type { NextAuthConfig } from 'next-auth';
 // import { authConfig } from './auth.config';
-import Credentials from 'next-auth/providers/credentials';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import Google from "next-auth/providers/google";
- 
+
 // export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth({
 //   ...authConfig,
 //   providers: [
@@ -39,14 +39,38 @@ import Google from "next-auth/providers/google";
 //     }),
 //   ],
 // });
+const credentialsConfig = {
+  name: "Credentials",
+  credentials: {
+    username: { label: "Username", type: "text", placeholder: "jsmith" },
+    password: { label: "Password", type: "password", placeholder: "********" }
+  },
+  async authorize(credentials: any, req: any) {
+    const user = {
+      id: "1", username: "smith", email: "", password: "password"
+    };
+    if (user) {
+      return user;
+    } else {
+      return null;
+    }
+  }
+}
 
 const config = {
   providers: [
-    Google
-    //   ({
-    //   clientId: process.env.AUTH_GOOGLE_ID,
-    //   clientSecret: process.env.AUTH_GOOGLE_SECRET,
-    // }),
+    CredentialsProvider(credentialsConfig),
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
+    }) // Add closing parenthesis here
   ]
 } satisfies NextAuthConfig;
 
