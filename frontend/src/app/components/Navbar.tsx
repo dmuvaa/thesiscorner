@@ -1,6 +1,8 @@
 /** @format */
 import Link from "next/link";
-export default function Navbar() {
+import { auth, signIn, signOut } from "@/auth";
+export default async function Navbar() {
+  const session = await auth();
   return (
     <>
       <div>
@@ -40,24 +42,39 @@ export default function Navbar() {
                 Resources
               </a>
             </div>
-            <div>
-              <a
-                href="#"
-                className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0"
-              >
-                Log In
-              </a>
-              <a
-                // href="/api/auth/signin"
-                onClick={async (e) => { 
-                  'use server'
-                  e.preventDefault();
-                  window.location.href = "/api/auth/signin";
-                }}
-                className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0"
-              >
-                Order Now
-              </a>
+            <div className="ml-auto">
+              {session && session.user ? (
+                <div className="flex gap-2">
+                  <p>{session.user.name}</p>
+                  <form
+                    action={async () => {
+                      "use server";
+                      await signOut();
+                    }}
+                  >
+                    <button
+                      className="border hover:bg-blue-100 p-4 rounded"
+                       type="submit"
+                    >
+                      Sign Out
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <form
+                  action={async () => {
+                    "use server";
+                    await signIn();
+                  }}
+                >
+                  <button
+                    className="border hover:bg-blue-100 p-4 rounded"
+                    type="submit"
+                  >
+                    Sign In
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </nav>
