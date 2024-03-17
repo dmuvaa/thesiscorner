@@ -11,69 +11,26 @@ const OrderForm = () => {
           It&apos;s fast, secure, and confidential
         </p>
       </div>
-
-      <div className=" py-4 px-4 bg-white rounded border shadow">
-        <div className="border-l-4 border-blue-500 pl-4 mb-6">
-          <h3 className="text-xl font-bold">1. Paper details</h3>
-
-          {/* Academic Level */}
-          <label className="block mt-4">
-            Academic level
-            <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-              {/* Options */}
-            </select>
-          </label>
-
-          {/* Other form fields */}
-          {/* ... */}
+      <div className="rounded border shadow">
+        <h3 className="text-xl font-bold mb-2">Paper details</h3>
+        <div className="grid grid-flow-row auto-rows-auto mb-2">
+          <div className="grid grid-cols-6">
+            <div className="col-span-2">
+              <label className="block mt-4">Academic level</label>
+            </div>
+            <div className="col-span-4 border">
+              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <div className="col-span 1">
+              <label className="block mt-4">
+                Academic level
+                <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+              </label>
+            </div>
+          </div>
         </div>
-
-        {/* Paper Format */}
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-        <label className="block mt-4">
-          Paper format
-          <select className="mt-1 block w-full border-gray-300 rounded shadow-sm">
-            {/* Options */}
-          </select>
-        </label>
-
-        {/* Deadline */}
-        {/* ... */}
       </div>
     </div>
   );
