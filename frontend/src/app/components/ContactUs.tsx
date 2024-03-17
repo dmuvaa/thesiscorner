@@ -4,7 +4,7 @@ import React from "react";
 
 const OrderNowPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center h-screen bg-green-200">
       <h1 className="text-4xl font-bold mb-8">Order Now</h1>
       <form className="w-1/3 bg-white rounded-lg shadow-lg p-8">
         <div className="mb-4">
