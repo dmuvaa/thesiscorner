@@ -27,8 +27,8 @@ const OrderForm = () => {
             <div className="col-span-2 grid place-items-end">
               <label>Academic Level</label>
             </div>
-            <div className="col-span-6 border p-12">
-              <ButtonGroup items={options}/>
+            <div className="col-span-6">
+              <ButtonGroup items={options} />
               {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
             </div>
           </div>
@@ -36,16 +36,28 @@ const OrderForm = () => {
             <div className="col-span-2 grid justify-items-end">
               <label>Type of Paper</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
+                {options.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Discipline</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
+                {options.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -76,16 +88,18 @@ const OrderForm = () => {
             <div className="col-span-2 grid justify-items-end">
               <label>Paper Format</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <ButtonGroup items={options} />
+              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Deadline</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <ButtonGroup items={options} />
+              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -124,8 +138,9 @@ const OrderForm = () => {
             <div className="col-span-2 grid justify-items-end">
               <label>Writer Category</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <ButtonGroup items={options} />
+              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
