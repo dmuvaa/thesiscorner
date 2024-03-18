@@ -3,9 +3,14 @@
 import React from "react";
 import ButtonGroup from "./ButtonGroup";
 import InputCounter from "./Incr";
+import DivGroup from "./DivGroup";
+
+import AdditionalServices from "./Checkbox";
+
+import {additionalServices, deadline, writerCategory, paperFormat, academicLevel, paperType, discipline } from "./constants";
+
 
 const OrderForm = () => {
-  const options = ["Option 1", "Option 2", "Option 3", "Option 3", "Option 3"];
 
   return (
     <div>
@@ -15,7 +20,7 @@ const OrderForm = () => {
           It&apos;s fast, secure, and confidential
         </p>
       </div>
-      <div className="rounded border shadow">
+      <div className="">
         <h3 className="text-xl font-bold mb-2">Paper Details</h3>
         <div className="grid grid-flow-row auto-rows-auto mb-2">
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -23,8 +28,7 @@ const OrderForm = () => {
               <label>Academic Level</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={options} />
-              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
+              <ButtonGroup items={academicLevel} />
             </div>
           </div>
           <div className="grid grid-cols-8 gap-6 my-2 py-1">
@@ -33,7 +37,7 @@ const OrderForm = () => {
             </div>
             <div className="col-span-6">
               <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
-                {options.map((option, index) => (
+                {paperType.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
                   </option>
@@ -47,7 +51,7 @@ const OrderForm = () => {
             </div>
             <div className="col-span-6">
               <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
-                {options.map((option, index) => (
+                {discipline.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
                   </option>
@@ -66,14 +70,14 @@ const OrderForm = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-8 my-2 py-1 gap-6">
+          <div className="grid grid-cols-8 my-2 pt-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Paper Instructions</label>
             </div>
             <div className="col-span-6 border rounded">
               <textarea
                 placeholder="Write anything you feel is important for the writer to consider. An outline, a grading scale, and other documents may be uploaded as additional materials."
-                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring-2 font-sans focus:ring-slate-400 mb-2"
+                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring font-sans focus:ring-slate-400 mb-2"
               ></textarea>
             </div>
           </div>
@@ -82,10 +86,10 @@ const OrderForm = () => {
               <label>Additional Materials</label>
             </div>
             <div className="col-span-6 border border-dashed bg-yellow-500/10 p-4 rounded">
-              <input
-                type="file"
-                              className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
-              />
+              <input type="file" className="w-full p-2" />
+              <p className="mt-2 ml-2 font-extralight text-ellipsis">
+                or Drop Files Here
+              </p>
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -93,8 +97,7 @@ const OrderForm = () => {
               <label>Paper Format</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={options} />
-              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
+              <ButtonGroup items={paperFormat} />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -102,7 +105,7 @@ const OrderForm = () => {
               <label>Deadline</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={options} />
+              <ButtonGroup items={deadline} />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -142,17 +145,34 @@ const OrderForm = () => {
               <label>Writer Category</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={options} />
+              <DivGroup items={writerCategory} />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Additional Services</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6 ">
+              <AdditionalServices items={additionalServices} />
             </div>
           </div>
+          <div className="grid grid-cols-8 my-2 py-1 gap-6">
+            <div className="col-span-2 grid justify-items-end">
+              <label>Coupons</label>
+            </div>
+            <div className="col-span-4 ">
+              <button className="p-6 bg-blue-950 rounded text-white">
+                Not Available
+              </button>
+            </div>
+          </div>
+        </div>
+        <h3 className="text-xl font-bold mb-2">Account</h3>
+        <div className="bg-lime-500/10 p-4 rounded m-4 border border-green-600">
+          <p className="text-lime-500">
+            Your email is{" "}
+            <span className="font-bold">.....................</span>
+          </p>
         </div>
       </div>
     </div>

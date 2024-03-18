@@ -22,9 +22,9 @@ const InputCounter = () => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center ">
       <button
-        className="py-2 px-3 border border-gray-200 bg-white text-gray-800 hover:bg-gray-100"
+        className="py-2 px-3 border border-gray-200 bg-white text-gray-800 hover:bg-gray-100 rounded-s-lg"
         onClick={handleDecrement}
         disabled={count === 0}
       >
@@ -33,11 +33,11 @@ const InputCounter = () => {
       <input
         type="text"
         value={count}
-        className="w-12 text-center border border-gray-200 focus:outline-none"
+        className="w-12 text-center border py-2 text-black/50 border-gray-200 focus:outline-none"
         onChange={handleInputChange}
       />
       <button
-        className="py-2 px-3 border border-gray-200 bg-white text-gray-800 hover:bg-gray-100"
+        className="py-2 px-3 border border-gray-200 bg-white text-gray-800 hover:bg-gray-100 rounded-e-lg"
         onClick={handleIncrement}
       >
         +
