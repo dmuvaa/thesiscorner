@@ -5,13 +5,7 @@ import ButtonGroup from "./ButtonGroup";
 import InputCounter from "./Incr";
 
 const OrderForm = () => {
-    const options = [
-      "Option 1",
-      "Option 2",
-      "Option 3",
-      "Option 3",
-      "Option 3",
-    ];
+  const options = ["Option 1", "Option 2", "Option 3", "Option 3", "Option 3"];
 
   return (
     <div>
@@ -65,24 +59,33 @@ const OrderForm = () => {
             <div className="col-span-2 grid justify-items-end">
               <label>Topic</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6 border rounded">
+              <input
+                type="text"
+                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Paper Instructions</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6 border rounded">
+              <textarea
+                placeholder="Write anything you feel is important for the writer to consider. An outline, a grading scale, and other documents may be uploaded as additional materials."
+                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring-2 font-sans focus:ring-slate-400 mb-2"
+              ></textarea>
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Additional Materials</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6 border border-dashed bg-yellow-500/10 p-4 rounded">
+              <input
+                type="file"
+                              className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">

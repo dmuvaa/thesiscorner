@@ -6,7 +6,7 @@
   /* --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255; */
-/* } */ 
+/* } */
 
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -30,4 +30,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+::-webkit-file-upload-button {
+  background: rgb(194, 205, 255);
+  color: rgb(76, 0, 255);
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid rgb(76, 0, 255);
+  cursor: pointer;
+  
 }
