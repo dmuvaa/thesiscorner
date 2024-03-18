@@ -5,7 +5,7 @@ export default async function Navbar() {
   const session = await auth();
   return (
     <>
-      <div >
+      <div className="static">
         <nav className="flex items-center justify-between flex-wrap bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% px-28 py-4">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
             <span className="font-semibold text-xl tracking-tight">

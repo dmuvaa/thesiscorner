@@ -20,7 +20,7 @@ const Order: React.FC = () => {
           {/* Adds margin-left to accommodate side navigation */}
           <OrderForm />
         </div>
-        <div className="sticky top-4 col-span-2 size-66 overflow-x-auto">
+        <div className="sticky top-4 col-span-2 size-48 overflow-x-auto">
           <Checkout />
         </div>
       </div>
