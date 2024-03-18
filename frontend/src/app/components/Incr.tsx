@@ -33,7 +33,7 @@ const InputCounter = () => {
       <input
         type="text"
         value={count}
-        className="w-12 text-center border py-2 text-black/50 border-gray-200 focus:outline-none"
+        className="w-12 text-center border py-2 text-black border-gray-200 focus:outline-none"
         onChange={handleInputChange}
       />
       <button
