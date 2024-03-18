@@ -2,6 +2,7 @@
 
 import React from "react";
 import ButtonGroup from "./ButtonGroup";
+import InputCounter from "./Incr";
 
 const OrderForm = () => {
     const options = [
@@ -99,39 +100,38 @@ const OrderForm = () => {
             </div>
             <div className="col-span-6">
               <ButtonGroup items={options} />
-              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Pages</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <InputCounter />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Sources bo be Cited</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <InputCounter />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>Charts</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6">
+              <InputCounter />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid justify-items-end">
               <label>PowerPoint Slides</label>
             </div>
-            <div className="col-span-6 border">
-              <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select>
+            <div className="col-span-6 ">
+              <InputCounter />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -140,7 +140,6 @@ const OrderForm = () => {
             </div>
             <div className="col-span-6">
               <ButtonGroup items={options} />
-              {/* <select className="mt-1 block w-full border-gray-300 rounded shadow-sm"></select> */}
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
