@@ -1,16 +1,37 @@
 /** @format */
 
-import React from "react";
+"use client";
+/** @format */
+
+import React, { ChangeEvent, useState } from "react";
 import ButtonGroup from "./ButtonGroup";
 import InputCounter from "./Incr";
 import DivGroup from "./DivGroup";
 
 import AdditionalServices from "./Checkbox";
 
-import {additionalServices, deadline, writerCategory, paperFormat, academicLevel, paperType, discipline } from "./constants";
-
+import {
+  additionalServices,
+  deadline,
+  writerCategory,
+  paperFormat,
+  academicLevel,
+  paperType,
+  discipline,
+} from "./constants";
 
 const OrderForm = () => {
+  const [textArea, setTextArea] = useState("");
+  const [error, setError] = useState<null | Error>(null);
+
+  function handleTextareaChange(event: ChangeEvent<HTMLTextAreaElement>): void {
+    event.preventDefault();
+    try {
+      setTextArea(event.target.value);
+    } catch (err) {
+      setError(err as Error);
+    }
+  }
 
   return (
     <div>
@@ -78,7 +99,13 @@ const OrderForm = () => {
               <textarea
                 placeholder="Write anything you feel is important for the writer to consider. An outline, a grading scale, and other documents may be uploaded as additional materials."
                 className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring font-sans focus:ring-slate-400 mb-2"
+                onChange={handleTextareaChange}
               ></textarea>
+              {error !== null && (
+                <p className="p-2 bg-red-600 rounded w-full text-white">
+                  {error.message}
+                </p>
+              )}
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
