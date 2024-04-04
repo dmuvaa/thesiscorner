@@ -27,7 +27,7 @@ export default function DashboardLayout({
   return (
     <section>
       <AdminNavbar user={user} />
-      <div className="min-h-screen grid grid-cols-1 md:grid-cols-4 gap-4 mx-12 ">
+      <div className="max-h-screen grid grid-cols-1 md:grid-cols-4 gap-4 mx-12 ">
         <div className="">
           <SideNav />
         </div>

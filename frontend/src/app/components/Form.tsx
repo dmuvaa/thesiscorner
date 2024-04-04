@@ -8,7 +8,7 @@ function PriceCalculator() {
   const [academicLevel, setAcademicLevel] = useState("high_school"); // Initial academic level
   const [deadline, setDeadline] = useState(14); // Initial deadline
   const [pages, setPages] = useState(1); // Initial number of pages
-  const [price, setPrice] = useState(6); // Initial price
+  const [price, setPrice] = useState(); // Initial price
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); 
 
@@ -74,8 +74,6 @@ function PriceCalculator() {
       } finally { 
         setIsLoading(false);
       }
-      // const calculatedPrice = calcPrice();
-      // setPrice(Number(calculatedPrice));
     }
 
     finalPrice();
