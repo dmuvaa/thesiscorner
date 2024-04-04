@@ -15,13 +15,13 @@ const Order: React.FC = () => {
     //     </div>
     //   </div>
     <div className="px-24 py-4">
-      <div className="grid grid-cols-8 gap-4">
-        <div className="col-span-6 ">
-          {/* Adds margin-left to accommodate side navigation */}
+      <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
+        <div className="md:col-span-6 ">
           <OrderForm />
         </div>
-        <div className="sticky top-4 col-span-2 size-48 overflow-x-auto">
-          <Checkout />
+        <div className="relative md:col-span-2 ">
+          <div className="absolute top-4 left-0 sticky"><Checkout /></div>
+          
         </div>
       </div>
     </div>

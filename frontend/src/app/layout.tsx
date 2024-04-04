@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+// import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,37 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    // <SessionProvider >
       <html lang="en">
         <body>
           <main>{children}</main>
-          {/* <div className="flex flex-col min-h-screen items-stretch">
-            <div className="flex-grow bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% ">
-              <main className="flex-shrink-0 flex items-center justify-center mt-20">
-                {children}
-              </main>
-            </div>
-          </div> */}
         </body>
       </html>
-    </>
-    // <html>
-    //   <head>
-    //     <Navbar />
-    //   </head>
-    //   <body>
-    //     <div className="flex flex-col min-h-screen items-stretch">
-    //       <div className="flex-grow bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% ">
-    //         <main className="flex-shrink-0 flex items-center justify-center mt-20">
-    //           {children}
-    //         </main>
-    //       </div>
-    //       <div className="flex-shrink-0">
-    //         <Navbar />
-    //       </div>
-    //     </div>
-    //   </body>
-    // </html>
+    // </SessionProvider>
   );
 }
 // className={inter.className}
