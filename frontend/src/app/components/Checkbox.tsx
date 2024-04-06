@@ -8,7 +8,7 @@ export default function AdditionalServices({ items }: { items: any }) {
           <input type="checkbox" name="" id="" />
         </div>
         <div className="col-span-10">
-          <div className="flex flex-col ">
+          <div className="flex justify-between my-2 ">
             <h4 className="font-bold opacity-3">{categoryData.title}</h4>
             <p className="ml-auto border">{categoryData.price}</p>
           </div>

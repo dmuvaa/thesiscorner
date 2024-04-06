@@ -99,7 +99,7 @@ const OrderForm = () => {
             <div className="col-span-6 rounded">
               <input
                 type="text"
-                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
+                className="w-full p-2 border rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
               />
             </div>
           </div>
@@ -131,7 +131,7 @@ const OrderForm = () => {
               </p>
             </div>
           </div>
-          <div className="grid grid md:grid-cols-8 my-2 py-1 gap-6">
+          <div className="grid md:grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid md:justify-items-end">
               <label className="font-semibold">Paper Format</label>
             </div>
