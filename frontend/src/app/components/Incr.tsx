@@ -5,11 +5,13 @@ import React, { useState } from "react";
 const InputCounter = () => {
   const [count, setCount] = useState(0);
 
-  const handleDecrement = () => {
+  const handleDecrement = (e: any) => {
+    e.preventDefault();
     setCount(Math.max(0, count - 1)); // Prevent going below 0
   };
 
-  const handleIncrement = () => {
+  const handleIncrement = (e: any) => {
+    e.preventDefault();
     setCount(count + 1);
   };
 
@@ -25,7 +27,7 @@ const InputCounter = () => {
     <div className="flex items-center ">
       <button
         className="py-2 px-3 border border-gray-200 bg-white text-gray-800 hover:bg-gray-100 rounded-s-lg"
-        onClick={handleDecrement}
+        onClick={(e) => handleDecrement}
         disabled={count === 0}
       >
         -

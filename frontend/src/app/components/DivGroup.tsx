@@ -19,18 +19,20 @@ const DivGroup = ({ items }: { items: any }) => {
   }) => {
     return (
       <div
-        className={`py-3 px-4 md:flex-col inline-flex items-center gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-blue-200 divide-y divide-dashed ${
+        className={`py-3 px-4 flex-col inline-flex items-center gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200 bg-white shadow-sm hover:bg-blue-200 divide-y divide-dashed ${
           categoryData.title === selectedItem ? "bg-lime-950 text-white" : ""
         }`}
         onClick={() => handleClick(categoryData.title)}
       >
-        <div className="grid grid-cols-2 gap-2">
-          <div className="justify-items-start">{categoryData.title}</div>
+        <div className="flex flex-row justify-between gap-2 font-medium text-gray-800">
+          <div className="whitespace-nowrap">
+            {categoryData.title}
+          </div>
           <div className="ml-auto">{categoryData.percentage}</div>
         </div>
 
         <hr />
-        <p>{categoryData.description}</p>
+        <p className="text-gray-600 font-light">{categoryData.description}</p>
       </div>
     );
   };
