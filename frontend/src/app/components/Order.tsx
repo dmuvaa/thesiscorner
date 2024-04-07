@@ -45,10 +45,12 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSources,
     charts,
     setCharts,
+    slides,
+    setSlides,
   } = props;
 
   console.log(paperInstructions);
-//pagecount
+  //pagecount
   const handlePageDecrement = (e: any) => {
     e.preventDefault();
     setPageCount(Math.max(0, pageCount - 1)); // Prevent going below 0
@@ -102,6 +104,25 @@ const OrderForm: React.FunctionComponent<any> = props => {
     if (!isNaN(value) && value >= 0) {
       // Check for valid numbers
       setCharts(value);
+    }
+  };
+
+  //slides
+  const handleSlideDecrement = (e: any) => {
+    e.preventDefault();
+    setSlides(Math.max(0, slides - 1)); // Prevent going below 0
+  };
+
+  const handleSlideIncrement = (e: any) => {
+    e.preventDefault();
+    setSlides(slides + 1);
+  };
+
+  const handleSlideInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setSlides(value);
     }
   };
 
@@ -164,6 +185,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
   //   console.error(`session error ${e}`)
   // }
 
+
   return (
     <form>
       <div>
@@ -171,6 +193,8 @@ const OrderForm: React.FunctionComponent<any> = props => {
         <p className="text-gray-600 text-xl mb-2">
           It&apos;s fast, secure, and confidential
         </p>
+
+
       </div>
       <div className="">
         <h3 className="text-xl font-bold mb-2">Paper Details</h3>
@@ -179,7 +203,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
             <div className="col-span-2 grid md:place-items-end">
               <label className="font-semibold">Academic Level</label>
             </div>
-            <div className="col-span-6">
+            <div className="col-span-6 ">
               <ButtonGroup items={academicLevel} selectedItem={selectedAcademicLevel} handleClick={handleClickAcademicLevel} />
             </div>
           </div>
@@ -279,7 +303,13 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Pages</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={pageCount}
+                setCount={setPageCount}
+                handleDecrement={handlePageDecrement}
+                handleIncrement={handlePageIncrement}
+                handleInputChange={handlePageInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -287,7 +317,13 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Sources to be Cited</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={sources}
+                setCount={setSources}
+                handleDecrement={handleSourcesDecrement}
+                handleIncrement={handleSourcesIncrement}
+                handleInputChange={handleSourcesInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -295,7 +331,13 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Charts</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={charts}
+                setCount={setCharts}
+                handleDecrement={handleChartDecrement}
+                handleIncrement={handleChartIncrement}
+                handleInputChange={handleChartInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -303,7 +345,13 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">PowerPoint Slides</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={slides}
+                setCount={setSlides}
+                handleDecrement={handleSlideDecrement}
+                handleIncrement={handleSlideIncrement}
+                handleInputChange={handleSlideInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">

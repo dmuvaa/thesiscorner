@@ -10,10 +10,14 @@ const Checkout: React.FC<any> = (props) => {
     selectedDiscipline,
     paperInstructions,
     file,
+    pageCount,
+    charts,
 
   } = props;
 
-  console.log(`${selectedPaperFormat}, ${selectedDeadline}, ${paperInstructions}, ${file}`)
+  // console.log(`${selectedPaperFormat}, ${selectedDeadline}, ${paperInstructions}, ${file}`)
+
+  const total = (pageCount * 15.00) + (charts * 5.00);
 
   return (
     <div className="p-4 bg-blue-200 rounded shadow-cyan-200 shadow-lg divide-y divide-gray-400 divide-solid">
@@ -26,17 +30,17 @@ const Checkout: React.FC<any> = (props) => {
 
       <div className="text-pretty font-sans">
         <div className='flex justify-between items-center'>
-          <p className="text-gray-600 text-sm font-thin">4 pages × $15.00
+          <p className="text-gray-600 text-sm font-thin">{pageCount} pages × $ 15.00
           </p>
-          <p className="text-gray-800 font-bold">$ 60.00</p>
+          <p className="text-gray-800 font-bold">$ {(pageCount * 15.00).toFixed(2)}</p>
         </div>
         <div className='flex justify-between items-center'>
           <p className="text-gray-600 text-sm font-thin">Category of the writer</p>
           <p className="text-gray-800 font-bold">$ 0.00</p>
         </div>
         <div className='flex justify-between items-center'>
-          <p className="text-gray-600 text-sm font-thin">Copy of sources used</p>
-          <p className="text-gray-800 font-bold">$ 0.00</p>
+          <p className="text-gray-600 text-sm font-thin">{ charts} charts × $ 5.0 </p>
+          <p className="text-gray-800 font-bold">$ {(charts * 5.00).toFixed(2)}</p>
         </div>
         <div className='flex justify-between items-center'>
           <p className="text-gray-600 text-sm font-thin">VIP support</p>
@@ -46,17 +50,15 @@ const Checkout: React.FC<any> = (props) => {
           <p className="text-lime-800/100 text-sm font-normal">Plagiarism report</p>
           <p className="text-lime-800/50 font-bold">$ 0.00</p>
         </div>
-        
-
-
       </div>
       <div className="flex justify-between items-center mb-4">
         <p className="text-gray-600 font-bold">Total</p>
-        <p className="text-gray-800 font-bold">$ 0.00</p>
+        <p className="text-gray-800 font-bold">$ { total.toFixed(2)}</p>
       </div>
       <button className="w-full bg-blue-500 text-white rounded py-2">
         Proceed to checkout
       </button>
+      
     </div>
   );
 };

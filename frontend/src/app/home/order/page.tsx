@@ -29,6 +29,7 @@ const Order: React.FC = () => {
   const [pageCount, setPageCount] = useState(0);
   const [sources, setSources] = useState(0);
   const [charts, setCharts] = useState(0);
+  const [slides, setSlides] = useState(0);
 
   return (
     <div className="px-24 py-4">
@@ -57,6 +58,8 @@ const Order: React.FC = () => {
             setSources={setSources}
             charts={charts}
             setCharts={setCharts}
+            slides={slides}
+            setSlides={setSlides}
           />
         </div>
         <div className="relative md:col-span-2 ">
@@ -73,6 +76,7 @@ const Order: React.FC = () => {
               pageCount={pageCount}
               sources={sources}
               charts={charts}
+              slides={slides}
 
             />
           </div>
