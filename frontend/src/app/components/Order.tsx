@@ -33,7 +33,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setTopic,
   } = props;
 
-  const handleTopicChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setTopic(event.target.value);
   }

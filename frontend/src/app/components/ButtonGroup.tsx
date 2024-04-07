@@ -1,7 +1,7 @@
 /** @format */
 import React from "react";
 
-const ButtonGroup = ({ items, selectedItem, handleClick }: { items: any[], selectedItem: number, handleClick: (index: number, event: React.MouseEvent<HTMLButtonElement>) => void}) => {
+const ButtonGroup = ({ items, selectedItem, handleClick }: { items: any[], selectedItem: number, handleClick: (item: String, event: React.MouseEvent<HTMLButtonElement>) => void}) => {
 
   return (
     <div className="flex flex-col sm:inline-flex sm:flex-row rounded-sm shadow-sm ">

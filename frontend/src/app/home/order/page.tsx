@@ -1,13 +1,14 @@
 /** @format */
 'use client';
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import OrderForm from "@/app/components/Order";
 import Checkout from "@/app/components/Payment";
+import { academicLevel, paperFormat, deadline } from "@/app/components/constants";
 
 const Order: React.FC = () => {
-  const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(0);
-  const [selectedPaperFormat, setSelectedPaperFormat] = useState(0);
+  const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(academicLevel[1]);
+  const [selectedPaperFormat, setSelectedPaperFormat] = useState(paperFormat[1]);
   const [selectedDeadline, setSelectedDeadline] = useState(0);
 
   // topic and settopic
