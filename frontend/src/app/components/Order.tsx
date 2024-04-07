@@ -39,9 +39,72 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setPaperInstructions,
     file,
     setFile,
+    pageCount,
+    setPageCount,
+    sources,
+    setSources,
+    charts,
+    setCharts,
   } = props;
 
   console.log(paperInstructions);
+//pagecount
+  const handlePageDecrement = (e: any) => {
+    e.preventDefault();
+    setPageCount(Math.max(0, pageCount - 1)); // Prevent going below 0
+  };
+
+  const handlePageIncrement = (e: any) => {
+    e.preventDefault();
+    setPageCount(pageCount + 1);
+  };
+
+  const handlePageInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setPageCount(value);
+    }
+  };
+
+  //sources
+  const handleSourcesDecrement = (e: any) => {
+    e.preventDefault();
+    setSources(Math.max(0, sources - 1)); // Prevent going below 0
+  };
+
+  const handleSourcesIncrement = (e: any) => {
+    e.preventDefault();
+    setSources(sources + 1);
+  };
+
+  const handleSourcesInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setSources(value);
+    }
+  };
+
+  //chart
+  const handleChartDecrement = (e: any) => {
+    e.preventDefault();
+    setCharts(Math.max(0, charts - 1)); // Prevent going below 0
+  };
+
+  const handleChartIncrement = (e: any) => {
+    e.preventDefault();
+    setCharts(charts + 1);
+  };
+
+  const handleChartInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setCharts(value);
+    }
+  };
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setFile(event.target.files[0]);

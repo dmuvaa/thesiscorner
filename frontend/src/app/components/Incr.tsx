@@ -27,7 +27,7 @@ const InputCounter = () => {
     <div className="flex items-center ">
       <button
         className="py-2 px-3 border border-gray-200 bg-white text-gray-800 hover:bg-gray-100 rounded-s-lg"
-        onClick={(e) => handleDecrement}
+        onClick={handleDecrement}
         disabled={count === 0}
       >
         -

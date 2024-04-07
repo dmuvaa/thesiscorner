@@ -25,26 +25,26 @@ const Checkout: React.FC<any> = (props) => {
       </div>
 
       <div className="text-pretty font-sans">
-        <div className='flex justify-between items-center mb-4'>
-          <p className="text-gray-600">4 pages × $15.00
+        <div className='flex justify-between items-center'>
+          <p className="text-gray-600 text-sm font-thin">4 pages × $15.00
           </p>
           <p className="text-gray-800 font-bold">$ 60.00</p>
         </div>
-        <div className='flex justify-between items-center mb-4'>
-          <p className="text-gray-600 ">Category of the writer</p>
+        <div className='flex justify-between items-center'>
+          <p className="text-gray-600 text-sm font-thin">Category of the writer</p>
           <p className="text-gray-800 font-bold">$ 0.00</p>
         </div>
-        <div className='flex justify-between items-center mb-4'>
-          <p className="text-gray-600">Copy of sources used</p>
+        <div className='flex justify-between items-center'>
+          <p className="text-gray-600 text-sm font-thin">Copy of sources used</p>
           <p className="text-gray-800 font-bold">$ 0.00</p>
         </div>
-        <div className='flex justify-between items-center mb-4'>
-          <p className="text-gray-600">VIP support</p>
+        <div className='flex justify-between items-center'>
+          <p className="text-gray-600 text-sm font-thin">VIP support</p>
           <p className="text-gray-800 font-bold">$ 0.00</p>
         </div>
-        <div className='flex justify-between items-center mb-4'>
-          <p className="text-gray-600">Plagiarism report</p>
-          <p className="text-gray-800 font-bold">$ 0.00</p>
+        <div className='flex justify-between items-center'>
+          <p className="text-lime-800/100 text-sm font-normal">Plagiarism report</p>
+          <p className="text-lime-800/50 font-bold">$ 0.00</p>
         </div>
         
 

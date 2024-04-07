@@ -25,6 +25,10 @@ const Order: React.FC = () => {
 
   // file upload
   const [file, setFile] = useState<File | null>(null);
+  // page count
+  const [pageCount, setPageCount] = useState(0);
+  const [sources, setSources] = useState(0);
+  const [charts, setCharts] = useState(0);
 
   return (
     <div className="px-24 py-4">
@@ -47,6 +51,12 @@ const Order: React.FC = () => {
             setPaperInstructions={setPaperInstructions}
             file={file}
             setFile={setFile}
+            pageCount={pageCount}
+            setPageCount={setPageCount}
+            sources={sources}
+            setSources={setSources}
+            charts={charts}
+            setCharts={setCharts}
           />
         </div>
         <div className="relative md:col-span-2 ">
@@ -60,6 +70,10 @@ const Order: React.FC = () => {
               selectedDiscipline={selectedDiscipline}
               paperInstructions={paperInstructions}
               file={file}
+              pageCount={pageCount}
+              sources={sources}
+              charts={charts}
+
             />
           </div>
           
