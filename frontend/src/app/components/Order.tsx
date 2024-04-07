@@ -29,11 +29,18 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSelectedPaperFormat,
     selectedDeadline,
     setSelectedDeadline,
+    topic,
+    setTopic,
   } = props;
 
-  const handleClickAcademicLevel = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleTopicChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
-    setSelectedAcademicLevel(index);
+    setTopic(event.target.value);
+  }
+
+  const handleClickAcademicLevel = (item: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedAcademicLevel(item);
   };
 
   const handleClickPaperFormat = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
@@ -123,7 +130,8 @@ const OrderForm: React.FunctionComponent<any> = props => {
             <div className="col-span-6 rounded">
               <input
                 type="text"
-                defaultValue={"Writers"}
+                defaultValue={topic}
+                onChange={handleTopicChange}
                 className="w-full p-2 border rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
               />
             </div>

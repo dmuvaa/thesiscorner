@@ -10,6 +10,9 @@ const Order: React.FC = () => {
   const [selectedPaperFormat, setSelectedPaperFormat] = useState(0);
   const [selectedDeadline, setSelectedDeadline] = useState(0);
 
+  // topic and settopic
+  const [topic, setTopic] = useState("Writer's Choice");
+
   return (
     <div className="px-24 py-4">
       <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
@@ -21,6 +24,8 @@ const Order: React.FC = () => {
             setSelectedPaperFormat={setSelectedPaperFormat}
             selectedDeadline={selectedDeadline}
             setSelectedDeadline={setSelectedDeadline}
+            topic={topic}
+            setTopic={setTopic}
           />
         </div>
         <div className="relative md:col-span-2 ">

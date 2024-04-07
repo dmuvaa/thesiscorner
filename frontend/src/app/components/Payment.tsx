@@ -4,12 +4,13 @@ const Checkout: React.FC<any> = (props) => {
     selectedAcademicLevel,
     selectedPaperFormat,
     selectedDeadline,
+    topic,
   } = props;
 
   return (
     <div className="p-4 bg-blue-200 rounded shadow-cyan-200 shadow-lg divide-y divide-gray-400 divide-solid">
-      <div>
-        <h2 className="text-xl font-semibold mb-2">Writer&apos;s choice</h2>
+      <div className='mb-4'>
+        <h2 className="text-xl font-semibold mb-2">{ topic }</h2>
         <h3>{ selectedAcademicLevel }</h3>
       </div>
 
