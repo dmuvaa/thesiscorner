@@ -12,16 +12,16 @@ const HeroSection = () => {
     <div className="text-black">
       <div className="grid grid-rows-3 grid-flow-col gap-y-8 content-center mx-auto">
         <div>
-          <h1 className="text-4xl font-bold mb-6">
+          <h1 className="text-4xl text-white font-bold mb-6">
             Welcome to our Writing Platform
           </h1>
         </div>
         <div>
-          <p className="text-lg mb-10">
+          <p className="text-lg text-white mb-10">
             Order high-quality writing services tailored to your needs.
           </p>
         </div>
-        <div className="flex gap-24">
+        <div className="flex justify-between">
           <button className="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded mr-4">
             &nbsp;Order Now
           </button>
