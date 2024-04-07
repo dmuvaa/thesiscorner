@@ -21,7 +21,31 @@ import {
   discipline,
 } from "./constants";
 
-const OrderForm = () => {
+const OrderForm: React.FunctionComponent<any> = props => {
+  const {
+    selectedAcademicLevel,
+    setSelectedAcademicLevel,
+    selectedPaperFormat,
+    setSelectedPaperFormat,
+    selectedDeadline,
+    setSelectedDeadline,
+  } = props;
+
+  const handleClickAcademicLevel = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedAcademicLevel(index);
+  };
+
+  const handleClickPaperFormat = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedPaperFormat(index);
+  };
+
+  const handleClickDeadline = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedDeadline(index);
+  };
+
   const [textArea, setTextArea] = useState("");
   const [error, setError] = useState<null | Error>(null);
 
@@ -61,7 +85,7 @@ const OrderForm = () => {
               <label className="font-semibold">Academic Level</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={academicLevel} />
+              <ButtonGroup items={academicLevel} selectedItem={selectedAcademicLevel} handleClick={handleClickAcademicLevel} />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 gap-6 my-2 py-1">
@@ -99,6 +123,7 @@ const OrderForm = () => {
             <div className="col-span-6 rounded">
               <input
                 type="text"
+                defaultValue={"Writers"}
                 className="w-full p-2 border rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
               />
             </div>
@@ -136,7 +161,7 @@ const OrderForm = () => {
               <label className="font-semibold">Paper Format</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={paperFormat} />
+              <ButtonGroup items={paperFormat} selectedItem={selectedPaperFormat} handleClick={handleClickPaperFormat} />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -144,7 +169,7 @@ const OrderForm = () => {
               <label className="font-semibold">Deadline</label>
             </div>
             <div className="md:col-span-6">
-              <ButtonGroup items={deadline} />
+              <ButtonGroup items={deadline} selectedItem={selectedDeadline} handleClick={handleClickDeadline} />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">

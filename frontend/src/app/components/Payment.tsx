@@ -1,10 +1,16 @@
 import React from 'react';
-const Checkout = () => {
+const Checkout: React.FC<any> = (props) => {
+  const {
+    selectedAcademicLevel,
+    selectedPaperFormat,
+    selectedDeadline,
+  } = props;
+
   return (
     <div className="p-4 bg-blue-200 rounded shadow-cyan-200 shadow-lg divide-y divide-gray-400 divide-solid">
       <div>
         <h2 className="text-xl font-semibold mb-2">Writer&apos;s choice</h2>
-        <h3>Masters</h3>
+        <h3>{ selectedAcademicLevel }</h3>
       </div>
 
       <div className="text-pretty font-sans">
