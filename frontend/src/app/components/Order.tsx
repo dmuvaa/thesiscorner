@@ -31,7 +31,32 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSelectedDeadline,
     topic,
     setTopic,
+    paper,
+    setPaper,
+    selectedDiscipline,
+    setSelectedDiscipline,
+    paperInstructions,
+    setPaperInstructions,
+    file,
+    setFile,
   } = props;
+
+  console.log(paperInstructions);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFile(event.target.files[0]);
+    }
+  };
+
+  const handleDisciplineChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setSelectedDiscipline(event.target.value);
+  }
+
+  const handlePaperChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setPaper(event.target.value);
+  }
 
   const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -53,13 +78,13 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSelectedDeadline(index);
   };
 
-  const [textArea, setTextArea] = useState("");
+
   const [error, setError] = useState<null | Error>(null);
 
-  function handleTextareaChange(event: ChangeEvent<HTMLTextAreaElement>): void {
+  function handlePaperInstructionsChange(event: ChangeEvent<HTMLTextAreaElement>): void {
     event.preventDefault();
     try {
-      setTextArea(event.target.value);
+      setPaperInstructions(event.target.value);
     } catch (err) {
       setError(err as Error);
     }
@@ -100,7 +125,10 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Type of Paper</label>
             </div>
             <div className="col-span-6">
-              <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
+              <select
+                className="p-2 focus:outline-none border w-full rounded shadow-sm"
+                onChange={handlePaperChange}
+              >
                 {paperType.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
@@ -114,7 +142,10 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Discipline</label>
             </div>
             <div className="col-span-6">
-              <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
+              <select
+                className="p-2 focus:outline-none border w-full rounded shadow-sm"
+                onChange={handleDisciplineChange}
+              >
                 {discipline.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
@@ -140,17 +171,12 @@ const OrderForm: React.FunctionComponent<any> = props => {
             <div className="col-span-2 grid md:justify-items-end">
               <label className="font-semibold">Paper Instructions</label>
             </div>
-            <div className="col-span-1 md:col-span-6 border rounded">
+            <div className="col-span-1 md:col-span-6 rounded">
               <textarea
                 placeholder="Write anything you feel is important for the writer to consider. An outline, a grading scale, and other documents may be uploaded as additional materials."
-                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring font-sans focus:ring-slate-400 mb-2"
-                onChange={handleTextareaChange}
+                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring font-sans border focus:ring-slate-400 mb-2"
+                onChange={handlePaperInstructionsChange}
               ></textarea>
-              {error !== null && (
-                <p className="p-2 bg-red-600 rounded w-full text-white">
-                  {error.message}
-                </p>
-              )}
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -158,7 +184,12 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Additional Materials</label>
             </div>
             <div className="col-span-6 border border-dashed bg-yellow-500/10 p-4 rounded">
-              <input type="file" className="w-full p-2" />
+              <input
+                type="file"
+                className="w-full p-2"
+                onChange={handleFileChange}
+                accept=".docx, .pdf"
+              />
               <p className="mt-2 ml-2 font-extralight text-ellipsis">
                 or Drop Files Here
               </p>

@@ -9,10 +9,22 @@ import { academicLevel, paperFormat, deadline } from "@/app/components/constants
 const Order: React.FC = () => {
   const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(academicLevel[1]);
   const [selectedPaperFormat, setSelectedPaperFormat] = useState(paperFormat[1]);
-  const [selectedDeadline, setSelectedDeadline] = useState(0);
+  const [selectedDeadline, setSelectedDeadline] = useState(deadline[deadline.length - 1]);
 
   // topic and settopic
   const [topic, setTopic] = useState("Writer's Choice");
+
+  // type of paper
+  const [paper, setPaper] = useState("");
+
+  // discipline
+  const [selectedDiscipline, setSelectedDiscipline] = useState("");
+
+  // PAPER instruction
+  const [paperInstructions, setPaperInstructions] = useState("");
+
+  // file upload
+  const [file, setFile] = useState<File | null>(null);
 
   return (
     <div className="px-24 py-4">
@@ -27,6 +39,14 @@ const Order: React.FC = () => {
             setSelectedDeadline={setSelectedDeadline}
             topic={topic}
             setTopic={setTopic}
+            paper={paper}
+            setPaper={setPaper}
+            selectedDiscipline={selectedDiscipline}
+            setSelectedDiscipline={setSelectedDiscipline}
+            paperInstructions={paperInstructions}
+            setPaperInstructions={setPaperInstructions}
+            file={file}
+            setFile={setFile}
           />
         </div>
         <div className="relative md:col-span-2 ">
@@ -35,6 +55,11 @@ const Order: React.FC = () => {
               selectedAcademicLevel={selectedAcademicLevel}
               selectedPaperFormat={selectedPaperFormat}
               selectedDeadline={selectedDeadline}
+              topic={topic}
+              paper={paper}
+              selectedDiscipline={selectedDiscipline}
+              paperInstructions={paperInstructions}
+              file={file}
             />
           </div>
           

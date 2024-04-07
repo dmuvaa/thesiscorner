@@ -1,17 +1,27 @@
 import React from 'react';
+import { discipline } from './constants';
 const Checkout: React.FC<any> = (props) => {
   const {
     selectedAcademicLevel,
     selectedPaperFormat,
     selectedDeadline,
     topic,
+    paper,
+    selectedDiscipline,
+    paperInstructions,
+    file,
+
   } = props;
+
+  console.log(`${selectedPaperFormat}, ${selectedDeadline}, ${paperInstructions}, ${file}`)
 
   return (
     <div className="p-4 bg-blue-200 rounded shadow-cyan-200 shadow-lg divide-y divide-gray-400 divide-solid">
       <div className='mb-4'>
         <h2 className="text-xl font-semibold mb-2">{ topic }</h2>
-        <h3>{ selectedAcademicLevel }</h3>
+        <h3 className="text-sm font-thin">{selectedAcademicLevel}</h3>
+        <h3 className="text-sm font-thin whitespace-nowrap">{paper}</h3>
+        <h3 className="text-sm font-thin">{selectedDiscipline}</h3>
       </div>
 
       <div className="text-pretty font-sans">
