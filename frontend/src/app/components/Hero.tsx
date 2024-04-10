@@ -1,6 +1,7 @@
 /** @format */
 "use client"
 import React from "react";
+import Link from "next/link";
 
 
 const HeroSection = () => {
@@ -21,13 +22,13 @@ const HeroSection = () => {
             Order high-quality writing services tailored to your needs.
           </p>
         </div>
-        <div className="flex justify-between">
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded mr-4">
+        <div className="inline-flex justify-between">
+          <Link href="/home/order" className="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded mr-4 align-items-center">
             &nbsp;Order Now
-          </button>
-          <button className="text-black hover:bg-gray-500 font-bold text-xl py-4 px-8 border-2 rounded" onClick={click}>
+          </Link>
+          <Link href="/home" className="text-black hover:bg-gray-500 font-bold text-xl py-4 px-8 border-2 rounded" onClick={click}>
             &nbsp;Free Inquiry
-          </button>
+          </Link>
         </div>
       </div>
     </div>

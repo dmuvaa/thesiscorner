@@ -21,11 +21,5 @@ export default function HomeLayout({
             <Navbar />
             {children}
         </section>
-        // <html lang="en">
-        //     <body
-        //         <Navbar />
-        //         {children}
-        //     </body>
-        // </html>
     );
 }

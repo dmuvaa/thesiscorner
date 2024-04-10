@@ -19,10 +19,10 @@ const DivGroup = ({ items }: { items: any }) => {
   }) => {
     return (
       <div
-        className={"py-3 px-4 flex-col inline-flex items-center gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200 bg-white shadow-sm hover:bg-blue-200 divide-y divide-dashed " + (categoryData.title === selectedItem ? "bg-lime-950 text-white" : "")}
+        className={"py-3 px-4 flex-col inline-flex items-center gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200  shadow-sm hover:bg-blue-200 divide-y divide-dashed " + (categoryData.title === selectedItem ? "bg-cyan-900 text-white hover:bg-cyan-600" : "bg-white text-gray-800")}
         onClick={() => handleClick(categoryData.title)}
       >
-        <div className="flex flex-row justify-between gap-2 font-medium text-gray-800">
+        <div className="flex flex-row justify-between gap-2 font-medium">
           <div className="whitespace-nowrap">
             {categoryData.title}
           </div>
@@ -30,7 +30,7 @@ const DivGroup = ({ items }: { items: any }) => {
         </div>
 
         <hr />
-        <p className="text-gray-600 font-light">{categoryData.description}</p>
+        <p className="font-light">{categoryData.description}</p>
       </div>
     );
   };
