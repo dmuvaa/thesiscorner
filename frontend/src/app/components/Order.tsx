@@ -47,6 +47,8 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setCharts,
     slides,
     setSlides,
+    selectedGroupItem,
+    setSelectedGroupItem,
   } = props;
 
   console.log(paperInstructions);
@@ -173,6 +175,10 @@ const OrderForm: React.FunctionComponent<any> = props => {
       setError(err as Error);
     }
   }
+
+  const handleGroupItemClick = (index: any) => {
+    setSelectedGroupItem(index);
+  };
 
   // const { data: session, status} = useSession();
   // const data = JSON.stringify(session)
@@ -359,7 +365,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Writer Category</label>
             </div>
             <div className="md:col-span-6">
-              <DivGroup items={writerCategory} />
+              <DivGroup items={writerCategory} selectedItem={selectedGroupItem} handleClick={ handleGroupItemClick} />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -375,7 +381,9 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Coupons</label>
             </div>
             <div className="col-span-4 ">
-              <button className="p-6 bg-blue-950 rounded text-white">
+              <button
+                disabled
+                className="p-6 bg-blue-950 rounded text-white">
                 Not Available
               </button>
             </div>

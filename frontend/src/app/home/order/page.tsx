@@ -31,6 +31,8 @@ const Order: React.FC = () => {
   const [charts, setCharts] = useState(0);
   const [slides, setSlides] = useState(0);
 
+  const [selectedGroupItem, setSelectedGroupItem] = useState(null);
+
   return (
     <div className="px-24 py-4">
       <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
@@ -60,6 +62,8 @@ const Order: React.FC = () => {
             setCharts={setCharts}
             slides={slides}
             setSlides={setSlides}
+            selectedGroupItem={selectedGroupItem}
+            setSelectedGroupItem={setSelectedGroupItem}
           />
         </div>
         <div className="relative md:col-span-2 ">
@@ -77,7 +81,7 @@ const Order: React.FC = () => {
               sources={sources}
               charts={charts}
               slides={slides}
-
+              selectedGroupItem={selectedGroupItem}
             />
           </div>
           

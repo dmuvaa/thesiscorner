@@ -2,12 +2,10 @@
 "use client";
 import React, { useState } from "react";
 
-const DivGroup = ({ items }: { items: any }) => {
-  const [selectedItem, setSelectedItem] = useState(null);
+const DivGroup = ({ items, selectedItem, handleClick }: { items: any; selectedItem: any; handleClick: any }) => {
+  
 
-  const handleClick = (index: any) => {
-    setSelectedItem(index);
-  };
+  
   const WriterCategoryCard = ({
     categoryData,
     selectedItem,
@@ -19,14 +17,18 @@ const DivGroup = ({ items }: { items: any }) => {
   }) => {
     return (
       <div
-        className={"py-3 px-4 flex-col inline-flex items-center gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200  shadow-sm hover:bg-blue-200 divide-y divide-dashed " + (categoryData.title === selectedItem ? "bg-cyan-900 text-white hover:bg-cyan-600" : "bg-white text-gray-800")}
+        className={"py-3 px-4 flex flex-col gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200  shadow-sm hover:bg-blue-200 divide-y divide-dashed " + (categoryData.title === selectedItem ? "bg-cyan-900 text-white hover:bg-cyan-600" : "bg-white text-gray-800")}
         onClick={() => handleClick(categoryData.title)}
       >
-        <div className="flex flex-row justify-between gap-2 font-medium">
-          <div className="whitespace-nowrap">
+        <div className="flex p-1 justify-between font-medium">
+          <div className="whitespace-nowrap flex-auto">
             {categoryData.title}
           </div>
-          <div className="ml-auto">{categoryData.percentage}</div>
+          <div className="flex-auto justify-items-end ">
+            <div>
+              {categoryData.percentage}
+            </div>
+          </div>
         </div>
 
         <hr />
