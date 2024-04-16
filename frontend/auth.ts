@@ -16,7 +16,7 @@ const credentialsConfig = {
     if (user) {
       return user;
     } else {
-      return null;
+      throw new Error("user not found");
     }
   }
 }
@@ -35,7 +35,8 @@ const config = {
         }
       }
     }) // Add closing parenthesis here
-  ]
+  ],
+  secret: process.env.AUTH_SECRET
 } satisfies NextAuthConfig;
 
 export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth(config);

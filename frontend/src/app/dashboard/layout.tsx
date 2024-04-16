@@ -4,6 +4,7 @@ import React from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { Metadata } from "next";
 import SideNav from "../components/Sidenav";
+import { useSession } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: {
