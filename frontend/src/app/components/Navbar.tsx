@@ -45,7 +45,13 @@ export default async function Navbar() {
             <div className="ml-auto">
               {session && session.user ? (
                 <div className="flex gap-2">
-                  <p>{session.user.email}</p>
+                  <p>{session.user.name}</p>
+                  <Link
+                    href="/dashboard"
+                    className="border hover:bg-blue-100 p-4 rounded"
+                  >
+                    Dashboard
+                  </Link>
                   <form
                     action={async () => {
                       "use server";

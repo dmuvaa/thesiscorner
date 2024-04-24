@@ -1,8 +1,10 @@
 /** @format */
 
 import React from "react";
+import { auth } from "@/auth";
 
-const SideNav = () => {
+const SideNav = async() => {
+  
   return (
     <nav>
       <div className="border rounded w-64 mx-4 mt-8">
