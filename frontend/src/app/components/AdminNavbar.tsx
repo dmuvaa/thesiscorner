@@ -6,14 +6,14 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 const AdminNavbar: React.FC<{ user: any }> = (user) => {
-  const session = useSession();
+  const {data: session, status} = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  if (!session.user) return null;
+  if (!session?.user) return null;
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
