@@ -3,6 +3,7 @@ import type { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import Google from "next-auth/providers/google";
 
+
 const credentialsConfig = {
   name: "Credentials",
   credentials: {
@@ -23,20 +24,25 @@ const credentialsConfig = {
 
 const config = {
   providers: [
-    CredentialsProvider(credentialsConfig),
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
-        }
+  CredentialsProvider(credentialsConfig),
+  Google({
+    clientId: process.env.AUTH_GOOGLE_ID,
+    clientSecret: process.env.AUTH_GOOGLE_SECRET,
+    authorization: {
+      params: {
+        prompt: "consent",
+        access_type: "offline",
+        response_type: "code"
       }
-    }) // Add closing parenthesis here
-  ],
-  secret: process.env.AUTH_SECRET
+    }
+  })
+],
+  pages: {
+    signIn: "/signin",
+    signOut: "/signout",
+  },
+  secret: process.env.AUTH_SECRET,
 } satisfies NextAuthConfig;
+
 
 export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth(config);

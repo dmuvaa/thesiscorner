@@ -6,6 +6,7 @@ import OrderForm from "@/app/components/Order";
 import Checkout from "@/app/components/Payment";
 import { academicLevel, paperFormat, deadline } from "@/app/components/constants";
 
+
 const Order: React.FC = () => {
   const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(academicLevel[1]);
   const [selectedPaperFormat, setSelectedPaperFormat] = useState(paperFormat[1]);
@@ -32,6 +33,7 @@ const Order: React.FC = () => {
   const [slides, setSlides] = useState(0);
 
   const [selectedGroupItem, setSelectedGroupItem] = useState(null);
+  
 
   return (
     <div className="px-24 py-4">

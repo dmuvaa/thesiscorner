@@ -1,10 +1,9 @@
+"use server";
+
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
-// ...
-
 export async function authenticate(
-    prevState: string | undefined,
     formData: FormData,
 ) {
     try {
@@ -20,4 +19,8 @@ export async function authenticate(
         }
         throw error;
     }
+}
+
+export const signProvider = async () => {
+    await signIn("google");
 }

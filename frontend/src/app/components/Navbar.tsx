@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { auth, signIn, signOut } from "@/auth";
-import SignInPage from '@/app/components/SignIn';
+// import SignInPage from '@/app/components/SignIn';
 
 export default async function Navbar() {
   const session = await auth();
@@ -14,7 +14,7 @@ export default async function Navbar() {
               Thesis Corner
             </span>
           </div>
-          <SignInPage />
+          
           <div className="block lg:hidden">
             <button
               id="nav"
