@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import type { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import Google from "next-auth/providers/google";
+import type { Provider } from 'next-auth/providers';
 
 
 const credentialsConfig = {
@@ -21,9 +22,7 @@ const credentialsConfig = {
     }
   }
 }
-
-const config = {
-  providers: [
+const providers: Provider[] = [
   CredentialsProvider(credentialsConfig),
   Google({
     clientId: process.env.AUTH_GOOGLE_ID,
@@ -36,12 +35,36 @@ const config = {
       }
     }
   })
-],
+]
+export const providerMap = providers.map((provider) => {
+  if (typeof provider === "function") {
+    const providerData = provider()
+    return { id: providerData.id, name: providerData.name }
+  } else {
+    return { id: provider.id, name: provider.name }
+  }
+});
+
+const config = {
+  providers,
   pages: {
     signIn: "/signin",
     signOut: "/signout",
   },
   secret: process.env.AUTH_SECRET,
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
+      if (isOnDashboard) {
+        if (isLoggedIn) return true;
+        return false; // Redirect unauthenticated users to login page
+      } else if (isLoggedIn) {
+        return Response.redirect(new URL('/dashboard', nextUrl));
+      }
+      return true;
+    },
+  },
 } satisfies NextAuthConfig;
 
 

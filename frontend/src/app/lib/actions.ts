@@ -2,12 +2,16 @@
 
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+// import dynamic from 'next/dynamic';
 
-export async function authenticate(
+// const redirect = dynamic(() => import('next/router').then((router) => router.default), { ssr: false });
+
+
+export async function authenticate(prevState: string | undefined,
     formData: FormData,
 ) {
     try {
-        await signIn('credentials', formData);
+        await signIn('credentials', formData, { callbackUrl: "/home/order" });
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
@@ -22,5 +26,6 @@ export async function authenticate(
 }
 
 export const signProvider = async () => {
-    await signIn("google");
+
+    await signIn("google", { callbackUrl: '/home/order'});
 }
