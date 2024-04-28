@@ -1,16 +1,25 @@
 /** @format */
-'use client';
+"use client";
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import OrderForm from "@/app/components/Order";
 import Checkout from "@/app/components/Payment";
-import { academicLevel, paperFormat, deadline } from "@/app/components/constants";
-
+import {
+  academicLevel,
+  paperFormat,
+  deadline,
+} from "@/app/components/constants";
 
 const Order: React.FC = () => {
-  const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(academicLevel[1]);
-  const [selectedPaperFormat, setSelectedPaperFormat] = useState(paperFormat[1]);
-  const [selectedDeadline, setSelectedDeadline] = useState(deadline[deadline.length - 1]);
+  const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(
+    academicLevel[1],
+  );
+  const [selectedPaperFormat, setSelectedPaperFormat] = useState(
+    paperFormat[1],
+  );
+  const [selectedDeadline, setSelectedDeadline] = useState(
+    deadline[deadline.length - 1],
+  );
 
   // topic and settopic
   const [topic, setTopic] = useState("Writer's Choice");
@@ -33,10 +42,9 @@ const Order: React.FC = () => {
   const [slides, setSlides] = useState(0);
 
   const [selectedGroupItem, setSelectedGroupItem] = useState(null);
-  
 
   return (
-    <div className="px-24 py-4">
+    <div className="px-8 md:px-24 py-4">
       <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
         <div className="md:col-span-6 ">
           <OrderForm
@@ -86,7 +94,6 @@ const Order: React.FC = () => {
               selectedGroupItem={selectedGroupItem}
             />
           </div>
-          
         </div>
       </div>
     </div>

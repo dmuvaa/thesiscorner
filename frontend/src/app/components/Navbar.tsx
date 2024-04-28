@@ -8,13 +8,13 @@ export default async function Navbar() {
   return (
     <>
       <div className="">
-        <nav className="flex min-w-max items-center justify-between flex-wrap bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% px-28 py-4">
+        <nav className="flex min-w-max items-center justify-between flex-wrap bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% px-8 md:px-28 py-4">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
             <span className="font-semibold text-xl tracking-tight">
               Thesis Corner
             </span>
           </div>
-          
+
           <div className="block lg:hidden">
             <button
               id="nav"
