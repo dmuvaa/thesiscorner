@@ -1,6 +1,7 @@
 /** @format */
 import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
     title: {
@@ -17,9 +18,15 @@ export default function HomeLayout({
     children: React.ReactNode;
 }) {
     return (
-        <section>
-            <Navbar />
-            {children}
-        </section>
+        <SessionProvider session={null}>
+            <section>
+                <Navbar />
+                {children}
+            </section>
+        </SessionProvider>
+        // <section>
+        //     <Navbar />
+        //     {children}
+        // </section>
     );
 }

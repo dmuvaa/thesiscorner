@@ -44,7 +44,7 @@ const Order: React.FC = () => {
   const [selectedGroupItem, setSelectedGroupItem] = useState(null);
 
   return (
-    <div className="px-8 md:px-24 py-4">
+    <div className="px-8 md:px-24 py-4 relative">
       <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
         <div className="md:col-span-6 ">
           <OrderForm
@@ -76,7 +76,7 @@ const Order: React.FC = () => {
             setSelectedGroupItem={setSelectedGroupItem}
           />
         </div>
-        <div className="relative md:col-span-2 ">
+        <div className="md:col-span-2 ">
           <div className="top-4 left-0 sticky">
             <Checkout
               selectedAcademicLevel={selectedAcademicLevel}
