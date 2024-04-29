@@ -4,7 +4,6 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import Google from "next-auth/providers/google";
 import type { Provider } from 'next-auth/providers';
 
-
 const credentialsConfig = {
   name: "Credentials",
   credentials: {
@@ -66,6 +65,5 @@ const config = {
     },
   },
 } satisfies NextAuthConfig;
-
 
 export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth(config);
