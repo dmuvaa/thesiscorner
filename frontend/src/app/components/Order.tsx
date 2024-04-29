@@ -21,18 +21,164 @@ import {
   discipline,
 } from "./constants";
 
-const OrderForm = () => {
-  const [textArea, setTextArea] = useState("");
+const OrderForm: React.FunctionComponent<any> = props => {
+  const {
+    selectedAcademicLevel,
+    setSelectedAcademicLevel,
+    selectedPaperFormat,
+    setSelectedPaperFormat,
+    selectedDeadline,
+    setSelectedDeadline,
+    topic,
+    setTopic,
+    paper,
+    setPaper,
+    selectedDiscipline,
+    setSelectedDiscipline,
+    paperInstructions,
+    setPaperInstructions,
+    file,
+    setFile,
+    pageCount,
+    setPageCount,
+    sources,
+    setSources,
+    charts,
+    setCharts,
+    slides,
+    setSlides,
+    selectedGroupItem,
+    setSelectedGroupItem,
+  } = props;
+
+  console.log(paperInstructions);
+  //pagecount
+  const handlePageDecrement = (e: any) => {
+    e.preventDefault();
+    setPageCount(Math.max(0, pageCount - 1)); // Prevent going below 0
+  };
+
+  const handlePageIncrement = (e: any) => {
+    e.preventDefault();
+    setPageCount(pageCount + 1);
+  };
+
+  const handlePageInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setPageCount(value);
+    }
+  };
+
+  //sources
+  const handleSourcesDecrement = (e: any) => {
+    e.preventDefault();
+    setSources(Math.max(0, sources - 1)); // Prevent going below 0
+  };
+
+  const handleSourcesIncrement = (e: any) => {
+    e.preventDefault();
+    setSources(sources + 1);
+  };
+
+  const handleSourcesInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setSources(value);
+    }
+  };
+
+  //chart
+  const handleChartDecrement = (e: any) => {
+    e.preventDefault();
+    setCharts(Math.max(0, charts - 1)); // Prevent going below 0
+  };
+
+  const handleChartIncrement = (e: any) => {
+    e.preventDefault();
+    setCharts(charts + 1);
+  };
+
+  const handleChartInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setCharts(value);
+    }
+  };
+
+  //slides
+  const handleSlideDecrement = (e: any) => {
+    e.preventDefault();
+    setSlides(Math.max(0, slides - 1)); // Prevent going below 0
+  };
+
+  const handleSlideIncrement = (e: any) => {
+    e.preventDefault();
+    setSlides(slides + 1);
+  };
+
+  const handleSlideInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      // Check for valid numbers
+      setSlides(value);
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFile(event.target.files[0]);
+    }
+  };
+
+  const handleDisciplineChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setSelectedDiscipline(event.target.value);
+  }
+
+  const handlePaperChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setPaper(event.target.value);
+  }
+
+  const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setTopic(event.target.value);
+  }
+
+  const handleClickAcademicLevel = (item: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedAcademicLevel(item);
+  };
+
+  const handleClickPaperFormat = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedPaperFormat(index);
+  };
+
+  const handleClickDeadline = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSelectedDeadline(index);
+  };
+
+
   const [error, setError] = useState<null | Error>(null);
 
-  function handleTextareaChange(event: ChangeEvent<HTMLTextAreaElement>): void {
+  function handlePaperInstructionsChange(event: ChangeEvent<HTMLTextAreaElement>): void {
     event.preventDefault();
     try {
-      setTextArea(event.target.value);
+      setPaperInstructions(event.target.value);
     } catch (err) {
       setError(err as Error);
     }
   }
+
+  const handleGroupItemClick = (index: any) => {
+    setSelectedGroupItem(index);
+  };
 
   // const { data: session, status} = useSession();
   // const data = JSON.stringify(session)
@@ -45,6 +191,7 @@ const OrderForm = () => {
   //   console.error(`session error ${e}`)
   // }
 
+
   return (
     <form>
       <div>
@@ -52,6 +199,8 @@ const OrderForm = () => {
         <p className="text-gray-600 text-xl mb-2">
           It&apos;s fast, secure, and confidential
         </p>
+
+
       </div>
       <div className="">
         <h3 className="text-xl font-bold mb-2">Paper Details</h3>
@@ -60,8 +209,8 @@ const OrderForm = () => {
             <div className="col-span-2 grid md:place-items-end">
               <label className="font-semibold">Academic Level</label>
             </div>
-            <div className="col-span-6">
-              <ButtonGroup items={academicLevel} />
+            <div className="col-span-6 ">
+              <ButtonGroup items={academicLevel} selectedItem={selectedAcademicLevel} handleClick={handleClickAcademicLevel} />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 gap-6 my-2 py-1">
@@ -69,7 +218,10 @@ const OrderForm = () => {
               <label className="font-semibold">Type of Paper</label>
             </div>
             <div className="col-span-6">
-              <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
+              <select
+                className="p-2 focus:outline-none border w-full rounded shadow-sm"
+                onChange={handlePaperChange}
+              >
                 {paperType.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
@@ -83,7 +235,10 @@ const OrderForm = () => {
               <label className="font-semibold">Discipline</label>
             </div>
             <div className="col-span-6">
-              <select className="p-2 focus:outline-none border w-full rounded shadow-sm">
+              <select
+                className="p-2 focus:outline-none border w-full rounded shadow-sm"
+                onChange={handleDisciplineChange}
+              >
                 {discipline.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
@@ -99,7 +254,9 @@ const OrderForm = () => {
             <div className="col-span-6 rounded">
               <input
                 type="text"
-                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
+                defaultValue={topic}
+                onChange={handleTopicChange}
+                className="w-full p-2 border rounded focus:outline-none focus-visible:ring focus:ring ring-slate-400"
               />
             </div>
           </div>
@@ -107,17 +264,12 @@ const OrderForm = () => {
             <div className="col-span-2 grid md:justify-items-end">
               <label className="font-semibold">Paper Instructions</label>
             </div>
-            <div className="col-span-1 md:col-span-6 border rounded">
+            <div className="col-span-1 md:col-span-6 rounded">
               <textarea
                 placeholder="Write anything you feel is important for the writer to consider. An outline, a grading scale, and other documents may be uploaded as additional materials."
-                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring font-sans focus:ring-slate-400 mb-2"
-                onChange={handleTextareaChange}
+                className="w-full p-2 rounded focus:outline-none focus-visible:ring focus:ring font-sans border focus:ring-slate-400 mb-2"
+                onChange={handlePaperInstructionsChange}
               ></textarea>
-              {error !== null && (
-                <p className="p-2 bg-red-600 rounded w-full text-white">
-                  {error.message}
-                </p>
-              )}
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -125,18 +277,23 @@ const OrderForm = () => {
               <label className="font-semibold">Additional Materials</label>
             </div>
             <div className="col-span-6 border border-dashed bg-yellow-500/10 p-4 rounded">
-              <input type="file" className="w-full p-2" />
+              <input
+                type="file"
+                className="w-full p-2"
+                onChange={handleFileChange}
+                accept=".docx, .pdf"
+              />
               <p className="mt-2 ml-2 font-extralight text-ellipsis">
                 or Drop Files Here
               </p>
             </div>
           </div>
-          <div className="grid grid md:grid-cols-8 my-2 py-1 gap-6">
+          <div className="grid md:grid-cols-8 my-2 py-1 gap-6">
             <div className="col-span-2 grid md:justify-items-end">
               <label className="font-semibold">Paper Format</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={paperFormat} />
+              <ButtonGroup items={paperFormat} selectedItem={selectedPaperFormat} handleClick={handleClickPaperFormat} />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -144,7 +301,7 @@ const OrderForm = () => {
               <label className="font-semibold">Deadline</label>
             </div>
             <div className="md:col-span-6">
-              <ButtonGroup items={deadline} />
+              <ButtonGroup items={deadline} selectedItem={selectedDeadline} handleClick={handleClickDeadline} />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -152,7 +309,13 @@ const OrderForm = () => {
               <label className="font-semibold">Pages</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={pageCount}
+                setCount={setPageCount}
+                handleDecrement={handlePageDecrement}
+                handleIncrement={handlePageIncrement}
+                handleInputChange={handlePageInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -160,7 +323,13 @@ const OrderForm = () => {
               <label className="font-semibold">Sources to be Cited</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={sources}
+                setCount={setSources}
+                handleDecrement={handleSourcesDecrement}
+                handleIncrement={handleSourcesIncrement}
+                handleInputChange={handleSourcesInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -168,7 +337,13 @@ const OrderForm = () => {
               <label className="font-semibold">Charts</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={charts}
+                setCount={setCharts}
+                handleDecrement={handleChartDecrement}
+                handleIncrement={handleChartIncrement}
+                handleInputChange={handleChartInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -176,7 +351,13 @@ const OrderForm = () => {
               <label className="font-semibold">PowerPoint Slides</label>
             </div>
             <div className="col-span-6">
-              <InputCounter />
+              <InputCounter
+                count={slides}
+                setCount={setSlides}
+                handleDecrement={handleSlideDecrement}
+                handleIncrement={handleSlideIncrement}
+                handleInputChange={handleSlideInputChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -184,7 +365,7 @@ const OrderForm = () => {
               <label className="font-semibold">Writer Category</label>
             </div>
             <div className="md:col-span-6">
-              <DivGroup items={writerCategory} />
+              <DivGroup items={writerCategory} selectedItem={selectedGroupItem} handleClick={ handleGroupItemClick} />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -200,7 +381,9 @@ const OrderForm = () => {
               <label className="font-semibold">Coupons</label>
             </div>
             <div className="col-span-4 ">
-              <button className="p-6 bg-blue-950 rounded text-white">
+              <button
+                disabled
+                className="p-6 bg-blue-950 rounded text-white">
                 Not Available
               </button>
             </div>

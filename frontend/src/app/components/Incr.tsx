@@ -2,25 +2,14 @@
 'use client'
 import React, { useState } from "react";
 
-const InputCounter = () => {
-  const [count, setCount] = useState(0);
-
-  const handleDecrement = () => {
-    setCount(Math.max(0, count - 1)); // Prevent going below 0
-  };
-
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(event.target.value, 10);
-    if (!isNaN(value) && value >= 0) {
-      // Check for valid numbers
-      setCount(value);
-    }
-  };
-
+interface InputCounterProps {
+    count: number;
+    setCount: React.Dispatch<React.SetStateAction<number>>;
+    handleDecrement: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handleIncrement: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  }
+const InputCounter: React.FC<InputCounterProps> = ({ count, setCount, handleDecrement, handleIncrement, handleInputChange }) => {
   return (
     <div className="flex items-center ">
       <button

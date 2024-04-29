@@ -1,6 +1,7 @@
 /** @format */
 "use client"
 import React from "react";
+import Link from "next/link";
 
 
 const HeroSection = () => {
@@ -12,22 +13,22 @@ const HeroSection = () => {
     <div className="text-black">
       <div className="grid grid-rows-3 grid-flow-col gap-y-8 content-center mx-auto">
         <div>
-          <h1 className="text-4xl font-bold mb-6">
+          <h1 className="text-4xl text-white font-bold mb-6">
             Welcome to our Writing Platform
           </h1>
         </div>
         <div>
-          <p className="text-lg mb-10">
+          <p className="text-lg text-white mb-10">
             Order high-quality writing services tailored to your needs.
           </p>
         </div>
-        <div className="flex gap-24">
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded mr-4">
+        <div className="inline-flex justify-between">
+          <Link href="/home/order" className="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded mr-4 align-items-center">
             &nbsp;Order Now
-          </button>
-          <button className="text-black hover:bg-gray-500 font-bold text-xl py-4 px-8 border-2 rounded" onClick={click}>
+          </Link>
+          <Link href="/home" className="text-black hover:bg-gray-500 font-bold text-xl py-4 px-8 border-2 rounded" onClick={click}>
             &nbsp;Free Inquiry
-          </button>
+          </Link>
         </div>
       </div>
     </div>

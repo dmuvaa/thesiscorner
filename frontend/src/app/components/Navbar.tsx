@@ -1,17 +1,21 @@
 /** @format */
 import Link from "next/link";
 import { auth, signIn, signOut } from "@/auth";
+// import SignInPage from '@/app/components/SignIn';
+import UserAvatar from "./userAvatar";
+
 export default async function Navbar() {
   const session = await auth();
   return (
     <>
       <div className="">
-        <nav className="flex min-w-max items-center justify-between flex-wrap bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% px-28 py-4">
+        <nav className="flex min-w-max items-center justify-between flex-wrap bg-gradient-to-r from-[#6c00c8] from-10% to-[#19d6e1] to-98% px-8 md:px-28 py-4">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
             <span className="font-semibold text-xl tracking-tight">
-              Thesis Corner
+              <a href="/home">Thesis Corner</a>
             </span>
           </div>
+
           <div className="block lg:hidden">
             <button
               id="nav"
@@ -44,35 +48,43 @@ export default async function Navbar() {
             </div>
             <div className="ml-auto">
               {session && session.user ? (
-                <div className="flex gap-2">
-                  <p>{session.user.name}</p>
-                  <form
-                    action={async () => {
-                      "use server";
-                      await signOut();
-                    }}
-                  >
-                    <button
-                      className="border hover:bg-blue-100 p-4 rounded"
-                      type="submit"
-                    >
-                      Sign Out
-                    </button>
-                  </form>
-                </div>
+                // <div className="flex gap-2">
+                //   <p>{session.user.name}</p>
+                //   <Link
+                //     href="/dashboard"
+                //     className="border hover:bg-blue-100 p-4 rounded"
+                //   >
+                //     Dashboard
+                //   </Link>
+                //   <form
+                //     action={async () => {
+                //       "use server";
+                //       await signOut();
+                //     }}
+                //   >
+                //     <button
+                //       className="border hover:bg-blue-100 p-4 rounded"
+                //       type="submit"
+                //     >
+                //       Sign Out
+                //     </button>
+                //   </form>
+                // </div>
+                <UserAvatar />
               ) : (
                 <form
-                  action={async () => {
-                    "use server";
-                    await signIn();
-                  }}
+                // action={async () => {
+                //   "use server";
+                //   await signIn();
+                // }}
                 >
-                  <button
+                  <a
                     className="border hover:bg-blue-100 p-4 rounded"
                     type="submit"
+                    href="/signin"
                   >
                     Sign In
-                  </button>
+                  </a>
                 </form>
               )}
             </div>
