@@ -1,19 +1,11 @@
 'use client'
 import React, { useState } from 'react';
-// import { auth, signOut } from '@/auth'
-import { signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
 import UserAvatar from './userAvatar';
 
 
 const AdminNavbar: React.FC<{ user: any }> = (user) => {
   const {data: session, status} = useSession();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
 
   if (!session?.user) return null;
 
