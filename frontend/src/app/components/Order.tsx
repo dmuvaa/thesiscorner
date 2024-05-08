@@ -3,11 +3,12 @@
 "use client";
 /** @format */
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useContext } from "react";
 import ButtonGroup from "./ButtonGroup";
 import InputCounter from "./Incr";
 import DivGroup from "./DivGroup";
-// import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+
 
 import AdditionalServices from "./Checkbox";
 
@@ -63,7 +64,9 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setPageCount(pageCount + 1);
   };
 
-  const handlePageInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePageInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
       // Check for valid numbers
@@ -82,7 +85,9 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSources(sources + 1);
   };
 
-  const handleSourcesInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSourcesInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
       // Check for valid numbers
@@ -101,7 +106,9 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setCharts(charts + 1);
   };
 
-  const handleChartInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChartInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
       // Check for valid numbers
@@ -120,7 +127,9 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSlides(slides + 1);
   };
 
-  const handleSlideInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSlideInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
       // Check for valid numbers
@@ -137,37 +146,47 @@ const OrderForm: React.FunctionComponent<any> = props => {
   const handleDisciplineChange = (event: ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
     setSelectedDiscipline(event.target.value);
-  }
+  };
 
   const handlePaperChange = (event: ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
     setPaper(event.target.value);
-  }
+  };
 
   const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setTopic(event.target.value);
-  }
+  };
 
-  const handleClickAcademicLevel = (item: any, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickAcademicLevel = (
+    item: any,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
     setSelectedAcademicLevel(item);
   };
 
-  const handleClickPaperFormat = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickPaperFormat = (
+    index: any,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
     setSelectedPaperFormat(index);
   };
 
-  const handleClickDeadline = (index: any, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickDeadline = (
+    index: any,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
     setSelectedDeadline(index);
   };
 
-
   const [error, setError] = useState<null | Error>(null);
 
-  function handlePaperInstructionsChange(event: ChangeEvent<HTMLTextAreaElement>): void {
+  function handlePaperInstructionsChange(
+    event: ChangeEvent<HTMLTextAreaElement>
+  ): void {
     event.preventDefault();
     try {
       setPaperInstructions(event.target.value);
@@ -191,6 +210,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
   //   console.error(`session error ${e}`)
   // }
 
+  const session = useSession();
 
   return (
     <form>
@@ -199,8 +219,6 @@ const OrderForm: React.FunctionComponent<any> = props => {
         <p className="text-gray-600 text-xl mb-2">
           It&apos;s fast, secure, and confidential
         </p>
-
-
       </div>
       <div className="">
         <h3 className="text-xl font-bold mb-2">Paper Details</h3>
@@ -210,7 +228,11 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Academic Level</label>
             </div>
             <div className="col-span-6 ">
-              <ButtonGroup items={academicLevel} selectedItem={selectedAcademicLevel} handleClick={handleClickAcademicLevel} />
+              <ButtonGroup
+                items={academicLevel}
+                selectedItem={selectedAcademicLevel}
+                handleClick={handleClickAcademicLevel}
+              />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 gap-6 my-2 py-1">
@@ -293,7 +315,11 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Paper Format</label>
             </div>
             <div className="col-span-6">
-              <ButtonGroup items={paperFormat} selectedItem={selectedPaperFormat} handleClick={handleClickPaperFormat} />
+              <ButtonGroup
+                items={paperFormat}
+                selectedItem={selectedPaperFormat}
+                handleClick={handleClickPaperFormat}
+              />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -301,7 +327,11 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Deadline</label>
             </div>
             <div className="md:col-span-6">
-              <ButtonGroup items={deadline} selectedItem={selectedDeadline} handleClick={handleClickDeadline} />
+              <ButtonGroup
+                items={deadline}
+                selectedItem={selectedDeadline}
+                handleClick={handleClickDeadline}
+              />
             </div>
           </div>
           <div className="grid grid-cols-8 my-2 py-1 gap-6">
@@ -365,7 +395,11 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Writer Category</label>
             </div>
             <div className="md:col-span-6">
-              <DivGroup items={writerCategory} selectedItem={selectedGroupItem} handleClick={ handleGroupItemClick} />
+              <DivGroup
+                items={writerCategory}
+                selectedItem={selectedGroupItem}
+                handleClick={handleGroupItemClick}
+              />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-8 my-2 py-1 gap-6">
@@ -381,9 +415,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Coupons</label>
             </div>
             <div className="col-span-4 ">
-              <button
-                disabled
-                className="p-6 bg-blue-950 rounded text-white">
+              <button disabled className="p-6 bg-blue-950 rounded text-white">
                 Not Available
               </button>
             </div>
@@ -392,7 +424,8 @@ const OrderForm: React.FunctionComponent<any> = props => {
         <h3 className="text-xl font-bold mb-2">Account</h3>
         <div className="bg-lime-500/10 p-4 rounded m-4 border border-green-600">
           <p className="text-lime-500">
-            Your email is <span className="font-bold">,.,,,,,,,,</span>
+            Your email is{" "}
+            <span className="font-bold">{session.data?.user?.email}</span>
           </p>
         </div>
       </div>

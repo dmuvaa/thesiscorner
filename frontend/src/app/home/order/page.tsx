@@ -1,7 +1,7 @@
 /** @format */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import OrderForm from "@/app/components/Order";
 import Checkout from "@/app/components/Payment";
 import {
@@ -10,15 +10,24 @@ import {
   deadline,
 } from "@/app/components/constants";
 
+import {
+  CalculatorContext,
+  CalculatorContextType,
+} from "@/app/components/calculator";
+
 const Order: React.FC = () => {
+  // context
+  const { academiclevel, deadlinee, page } =
+    useContext<CalculatorContextType>(CalculatorContext);
+  
   const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(
-    academicLevel[1],
+    academiclevel
   );
   const [selectedPaperFormat, setSelectedPaperFormat] = useState(
-    paperFormat[1],
+    paperFormat[1]
   );
   const [selectedDeadline, setSelectedDeadline] = useState(
-    deadline[deadline.length - 1],
+    deadline[deadline.length - 1]
   );
 
   // topic and settopic
