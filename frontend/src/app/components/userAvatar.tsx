@@ -56,7 +56,7 @@ const { data: session } = useSession();
           )}
 
       {isModalOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
           <div className="px-4 py-2">
             <h4 className="text-gray-800 prose-h4 italic">Welcome </h4>
             <p className="font-semibold prose-p">

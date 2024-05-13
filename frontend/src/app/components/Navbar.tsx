@@ -48,35 +48,9 @@ export default async function Navbar() {
             </div>
             <div className="ml-auto">
               {session && session.user ? (
-                // <div className="flex gap-2">
-                //   <p>{session.user.name}</p>
-                //   <Link
-                //     href="/dashboard"
-                //     className="border hover:bg-blue-100 p-4 rounded"
-                //   >
-                //     Dashboard
-                //   </Link>
-                //   <form
-                //     action={async () => {
-                //       "use server";
-                //       await signOut();
-                //     }}
-                //   >
-                //     <button
-                //       className="border hover:bg-blue-100 p-4 rounded"
-                //       type="submit"
-                //     >
-                //       Sign Out
-                //     </button>
-                //   </form>
-                // </div>
                 <UserAvatar />
               ) : (
                 <form
-                // action={async () => {
-                //   "use server";
-                //   await signIn();
-                // }}
                 >
                   <a
                     className="border hover:bg-blue-100 p-4 rounded"
