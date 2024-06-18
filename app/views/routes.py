@@ -8,6 +8,7 @@ from ..models import User, Order
 
 views = Blueprint('views', __name__)
 
+
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -15,9 +16,10 @@ def token_required(f):
         if not token:
             return jsonify({'message': 'Token is missing!'}), 401
         try:
-            data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=["HS256"])
+            data = jwt.decode(
+                token, current_app.config['SECRET_KEY'], algorithms=["HS256"])
             current_user = User.query.get(data['user_id'])
-        except:
+        except Exception as ex:
             return jsonify({'message': 'Token is invalid!'}), 401
         return f(current_user, *args, **kwargs)
     return decorated
@@ -27,25 +29,35 @@ def token_required(f):
 def home():
     return jsonify({'Message': 'Welcome to Thesiscorner'}), 200
 
+
 @views.route('/users/signup', methods=['POST'])
 def signup_user():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'])
-    new_user = User(username=data['username'], email=data['email'], password=hashed_password)
+    new_user = User(username=data['username'],
+                    email=data['email'], password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'Registered successfully!'}), 201
+
 
 @views.route('/users/login', methods=['POST'])
 def login_user():
     auth = request.authorization
     if not auth or not auth.username or not auth.password:
-        return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required!"'})
+        return make_response('Could not verify',
+                             401,
+                             {'WWW-Authenticate':
+                              'Basic realm="Login required!"'})
     user = User.query.filter_by(username=auth.username).first()
     if not user or not check_password_hash(user.password, auth.password):
-        return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required!"'})
-    token = jwt.encode({'user_id': user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'])
+        return make_response('Could not verify', 401,
+                             {'WWW-Authenticate':
+                              'Basic realm="Login required!"'})
+    token = jwt.encode({'user_id': user.id, 'exp': datetime.datetime.utcnow(
+    ) + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'])
     return jsonify({'token': token})
+
 
 @views.route('/users/<username>', methods=['GET'])
 @token_required
@@ -66,14 +78,17 @@ def get_user(current_user, username):
 
     return jsonify(user_data), 200
 
+
 @views.route('/orders', methods=['POST'])
 @token_required
 def create_order(current_user):
     data = request.get_json()
-    new_order = Order(essay_details=data['essayDetails'], due_date=data['dueDate'], user_id=current_user.id)
+    new_order = Order(essay_details=data['essayDetails'],
+                      due_date=data['dueDate'], user_id=current_user.id)
     db.session.add(new_order)
     db.session.commit()
     return jsonify({'message': 'Order placed successfully!'}), 201
+
 
 @views.route('/orders', methods=['GET'])
 @token_required
@@ -89,6 +104,7 @@ def get_orders(current_user):
         'user_id': order.user_id
     } for order in orders]), 200
 
+
 @views.route('/orders/<int:order_id>/submit', methods=['PUT'])
 @token_required
 def submit_work(current_user, order_id):
@@ -101,6 +117,7 @@ def submit_work(current_user, order_id):
     db.session.commit()
     return jsonify({'message': 'Order submitted successfully'}), 200
 
+
 @views.route('/orders/<int:order_id>/revision', methods=['PUT'])
 @token_required
 def request_revision(current_user, order_id):
@@ -112,6 +129,7 @@ def request_revision(current_user, order_id):
     order.status = 'revision requested'
     db.session.commit()
     return jsonify({'message': 'Revision requested successfully'}), 200
+
 
 @views.route('/orders/<int:order_id>/accept', methods=['PUT'])
 @token_required
