@@ -19,7 +19,7 @@ import {
   writerCategory,
   paperFormat,
   academicLevel,
-  paperType,
+  paperType as paperTypes,
   discipline,
 } from "./constants";
 
@@ -255,7 +255,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
                 className="p-2 focus:outline-none border w-full rounded shadow-sm"
                 onChange={handlePaperChange}
               >
-                {paperType.map((option, index) => (
+                {paperTypes.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
                   </option>

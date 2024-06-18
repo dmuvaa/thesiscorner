@@ -6,8 +6,8 @@ type CalculatorContextType = {
   setPaperType: (value: string) => void;
   academicLevel: string;
   setAcademicLevel: (value: string) => void;
-  deadline: number;
-  setDeadline: (value: number) => void;
+  deadline: string;
+  setDeadline: (value: string) => void;
   pages: number;
   setPages: (value: number) => void;
   price: string;
@@ -19,7 +19,7 @@ const CalculatorContext = createContext<CalculatorContextType | undefined>(undef
 export const CalculatorProvider = ({ children }: { children: ReactNode }) => {
   const [paperType, setPaperType] = useState("essay");
   const [academicLevel, setAcademicLevel] = useState("high_school");
-  const [deadline, setDeadline] = useState(14);
+  const [deadline, setDeadline] = useState("14_days");
   const [pages, setPages] = useState(1);
   const [price, setPrice] = useState("");
 
