@@ -93,7 +93,7 @@ function PriceCalculator() {
     }
 
     finalPrice();
-  }, [paperType, academicLevel, deadline, pages, calcPrice]);
+  }, [paperType, academicLevel, deadline, pages, calcPrice, setPrice]);
 
   const handleSubmit = (event: any) => {
     // Handle form submission
