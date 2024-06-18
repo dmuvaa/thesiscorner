@@ -55,7 +55,7 @@ def login_user():
                              {'WWW-Authenticate':
                               'Basic realm="Login required!"'})
     token = jwt.encode({'user_id': user.id, 'exp': datetime.datetime.utcnow(
-    ) + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'])
+    ) + datetime.timedelta(hours=1)}, current_app.config['SECRET_KEY'])
     return jsonify({'token': token})
 
 
