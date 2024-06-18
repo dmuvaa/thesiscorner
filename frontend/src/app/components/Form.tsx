@@ -2,15 +2,31 @@
 
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
+import { useCalculatorContext } from "./CalculatorContext";
+import { useRouter } from "next/router";
 
 function PriceCalculator() {
-  const [paperType, setPaperType] = useState("essay"); // Initial paper type
-  const [academicLevel, setAcademicLevel] = useState("high_school"); // Initial academic level
-  const [deadline, setDeadline] = useState(14); // Initial deadline
-  const [pages, setPages] = useState(1); // Initial number of pages
-  const [price, setPrice] = useState(); // Initial price
+  // const [paperType, setPaperType] = useState("essay"); // Initial paper type
+  // const [academicLevel, setAcademicLevel] = useState("high_school"); // Initial academic level
+  // const [deadline, setDeadline] = useState(14); // Initial deadline
+  // const [pages, setPages] = useState(1); // Initial number of pages
+  // const [price, setPrice] = useState(); // Initial price
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null); 
+  // const [error, setError] = useState(null);
+  const {
+    paperType,
+    setPaperType,
+    academicLevel,
+    setAcademicLevel,
+    deadline,
+    setDeadline,
+    pages,
+    setPages,
+    price,
+    setPrice,
+  } = useCalculatorContext();
+
+  const router = useRouter();
 
   const handlePaperTypeChange = (event: any) => {
     setPaperType(event.target.value);
@@ -21,7 +37,7 @@ function PriceCalculator() {
   };
 
   const handleDeadlineChange = (event: any) => {
-    console.log('change')
+    console.log("change");
     setDeadline(event.target.value);
   };
 
@@ -71,7 +87,7 @@ function PriceCalculator() {
         setPrice(calculatedPrice); // Convert the calculated price to a number before setting it as the new price state
       } catch (error) {
         setError(error as null); // Explicitly type the setError state setter function to accept null as its argument
-      } finally { 
+      } finally {
         setIsLoading(false);
       }
     }
@@ -82,6 +98,12 @@ function PriceCalculator() {
   const handleSubmit = (event: any) => {
     // Handle form submission
     event.preventDefault();
+    try {
+      router.push("/order");
+    } catch (error) {
+      throw new Error("An error occurred while processing your order");
+    }
+
     console.log(
       `Paper type: ${paperType}, Academic level: ${academicLevel}, Deadline: ${deadline}, Pages: ${pages}, Price: ${price}`
     );

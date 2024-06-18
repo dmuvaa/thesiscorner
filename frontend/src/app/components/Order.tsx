@@ -3,11 +3,12 @@
 "use client";
 /** @format */
 
-import React, { ChangeEvent, useState, useContext } from "react";
+import React, { ChangeEvent, useState, useContext, useEffect } from "react";
 import ButtonGroup from "./ButtonGroup";
 import InputCounter from "./Incr";
 import DivGroup from "./DivGroup";
 import { useSession } from "next-auth/react";
+import { useCalculatorContext } from "./CalculatorContext";
 
 
 import AdditionalServices from "./Checkbox";
@@ -51,6 +52,16 @@ const OrderForm: React.FunctionComponent<any> = props => {
     selectedGroupItem,
     setSelectedGroupItem,
   } = props;
+
+  const { paperType, academicLevel, deadline, pages, price } = useCalculatorContext();
+
+  useEffect(() => {
+    setPaper(paperType);
+    setSelectedAcademicLevel(academicLevel);
+    setSelectedDeadline(deadline);
+    setPageCount(pages);
+  }, [paperType, academicLevel, deadline, pages, setPaper, setSelectedAcademicLevel, setSelectedDeadline, setPageCount]);
+
 
   console.log(paperInstructions);
   //pagecount
