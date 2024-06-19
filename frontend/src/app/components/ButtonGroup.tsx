@@ -1,5 +1,5 @@
 import React from 'react';
-import '../globals.css'; // Make sure to import the CSS if you are adding custom styles
+import '../globals.css';
 
 interface ButtonGroupProps {
   items: string[];
@@ -16,7 +16,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ items, selectedItem, handleCl
           key={index}
           className={`flex-1 py-3 px-4 text-center border border-gray-200 shadow-sm ${
             index === 0 ? 'md:rounded-l-lg' : ''} ${index === items.length - 1 ? 'md:rounded-r-lg' : ''} ${
-            item === selectedItem ? "bg-teal-900 text-white hover:bg-teal-600" : "bg-white text-gray-800 hover:bg-gray-200"
+            item === selectedItem ? "bg-teal-900 text-white hover:bg-teal-600" : "bg-white text-gray-800 hover:bg-teal-200"
           }`}
           onClick={(event) => handleClick(item, event)}
         >
