@@ -48,6 +48,7 @@ const OrderForm: React.FunctionComponent<any> = (props) => {
     setSlides,
     selectedGroupItem,
     setSelectedGroupItem,
+    
   } = props;
 
   const { paperType, academicLevel, deadline, pages, price } =

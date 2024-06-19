@@ -284,6 +284,8 @@ import {
   paperType as paperTypes,
   academicLevel as academicLevels,
   deadline as deadlines,
+  academicLevelPricing,
+  deadlinePricing
 } from "./constants";
 
 function PriceCalculator() {
@@ -324,28 +326,7 @@ function PriceCalculator() {
   const basePricePerPage = 6;
 
   const calcPrice = useCallback(() => {
-    // Pricing factors based on academic levels
-    const academicLevelPricing: { [key: string]: number } = {
-      high_school: 1.0,
-      college: 1.2,
-      undergraduate: 1.4,
-      masters: 1.6,
-      phd: 2.0,
-    };
-
-    // Pricing factors based on deadlines
-    const deadlinePricing: { [key: string]: number } = {
-      "8_hours": 2.5,
-      "12_hours": 2.3,
-      "24_hours": 2.0,
-      "36_hours": 1.8,
-      "48_hours": 1.6,
-      "3_days": 1.4,
-      "5_days": 1.2,
-      "7_days": 1.1,
-      "14_days": 1.0,
-    };
-
+    // 
     // Get the factors from pricing dictionaries
     const academicLevelFactor = academicLevelPricing[academicLevel];
     const deadlineFactor = deadlinePricing[deadline];

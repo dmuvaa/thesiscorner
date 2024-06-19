@@ -14,6 +14,7 @@ const Checkout: React.FC<any> = (props) => {
     file,
     pageCount,
     charts,
+    selectedGroupItem,
   } = props;
 
   const { selectedServices } = useAdditionalServicesContext();
@@ -29,9 +30,10 @@ const Checkout: React.FC<any> = (props) => {
   const total = pageCount * 15.0 + charts * 5.0 + additionalServicesTotal;
 
   // const total = pageCount * 15.0 + charts * 5.0;
+  console.log(selectedGroupItem)
 
   return (
-    <div className="p-4 bg-blue-200 rounded shadow-cyan-200 shadow-lg divide-y divide-gray-400 divide-solid">
+    <div className="p-4 bg-teal-200 rounded shadow-teal-200 shadow-lg divide-y divide-gray-400 divide-solid">
       <div className="mb-4">
         <h2 className="text-xl font-semibold mb-2">{topic}</h2>
         <h3 className="text-sm font-thin">{selectedAcademicLevel}</h3>
@@ -48,20 +50,32 @@ const Checkout: React.FC<any> = (props) => {
             $ {(pageCount * 15.0).toFixed(2)}
           </p>
         </div>
-        <div className="flex justify-between items-center">
+        {/* <div className="flex justify-between items-center">
           <p className="text-gray-600 text-sm font-thin">
             Category of the writer
           </p>
           <p className="text-gray-800 font-bold">$ 0.00</p>
-        </div>
-        <div className="flex justify-between items-center">
+        </div> */}
+        
+          <div className="flex justify-between items-center">
+            <p className="text-gray-600 text-sm font-thin">
+              {selectedGroupItem}
+            </p>
+            <p className="text-gray-800 font-bold">{selectedGroupItem}</p>
+          </div>
+
+        
+        {charts > 0 && (
+          <div className="flex justify-between items-center">
           <p className="text-gray-600 text-sm font-thin">
-            {charts} charts × $ 5.0{" "}
+            {charts} charts × $ 6.00{" "}
           </p>
           <p className="text-gray-800 font-bold">
-            $ {(charts * 5.0).toFixed(2)}
+            $ {(charts * 6.00).toFixed(2)}
           </p>
         </div>
+        )}
+        
         {/* Added section to iterate through Additional services */}
         {selectedServices.length > 0 && (
           <div>

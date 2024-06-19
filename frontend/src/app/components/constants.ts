@@ -1,3 +1,6 @@
+import { Chathura } from "next/font/google";
+import { getParsedType } from "zod";
+
 export const additionalServices = {
   "Expert Proofreading": {
     price: "$3.75",
@@ -24,9 +27,7 @@ export const additionalServices = {
 // export const deadline = ["8 Hours", "24 Hours", "48 Hours", "3 Days", "5 Days", "7 Days", "14 Days"];
 export const deadline = [
   "8_hours",
-  "12_hours",
   "24_hours",
-  "36_hours",
   "48_hours",
   "3_days",
   "5_days",
@@ -65,12 +66,12 @@ export const paperFormat = [
 //   "PhD",
 // ];
 export const academicLevel = [
-    "high_school",
-    "college",
-    "undergraduate",
-    "masters",
-    "phd",
-  ];
+  "high_school",
+  "college",
+  "undergraduate",
+  "masters",
+  "phd",
+];
 
 export const paperType = [
   "Choose type",
@@ -121,3 +122,114 @@ export const discipline = [
   "Engineering",
   "Other",
 ];
+
+export const academicLevelPricing: { [key: string]: number } = {
+  high_school: 1.0,
+  college: 1.2,
+  undergraduate: 1.4,
+  masters: 1.6,
+  phd: 2.0,
+};
+
+// Pricing factors based on deadlines
+export const deadlinePricing: { [key: string]: number } = {
+  "8_hours": 2.5,
+  "12_hours": 2.3,
+  "24_hours": 2.0,
+  "36_hours": 1.8,
+  "48_hours": 1.6,
+  "3_days": 1.4,
+  "5_days": 1.2,
+  "7_days": 1.1,
+  "14_days": 1.0,
+};
+
+export const highschoolChartPricing = {
+  "8_hours": "$7.50",
+  "24_hours": "$10.00",
+  "48_hours": "$6.00",
+  "3_days": "$5.75",
+  "5_days": "$4.50",
+  "7_days": "$3.75",
+  "14_days": "$3.00",
+};
+export const collegeChartPricing = {
+  "8_hours": "$8.00",
+  "24_hours": "$7.50",
+  "48_hours": "$6.75",
+  "3_days": "$6.25",
+  "5_days": "$5.25",
+  "7_days": "$4.50",
+  "14_days": "$3.75",
+};
+
+export const undergrdChartPricing = {
+  "8_hours": "$8.75",
+  "24_hours": "$8.25",
+  "48_hours": "$7.50",
+  "3_days": "$6.75",
+  "5_days": "$6.25",
+  "7_days": "$5.50",
+  "14_days": "$5.00",
+};
+
+export const mastersChartPricing = {
+  "8_hours": "$11.00",
+  "24_hours": "$9.50",
+  "48_hours": "$8.00",
+  "3_days": "$7.50",
+  "5_days": "$7.00",
+  "7_days": "$6.50",
+  "14_days": "$5.50",
+};
+
+export const phdChartPricing = {
+  "8_hours": "$17.50",
+  "24_hours": "$12.00",
+  "48_hours": "$11.00",
+  "3_days": "$9.50",
+  "5_days": "$8.50",
+  "7_days": "$8.00",
+  "14_days": "$7.00",
+};
+
+// pages pricing 
+export const highschoolPagePricing = {
+  "8_hours": "$16.00",
+  "24_hours": "$15.00",
+  "48_hours": "$20.00",
+  "3_days": "$12.00",
+  "5_days": "$11.50",
+  "7_days": "$3.75",
+  "14_days": "$3.00",
+};
+
+// export const highschoolPagePricing = {
+//   "8_hours": "$7.50",
+//   "24_hours": "$10.00",
+//   "48_hours": "$6.00",
+//   "3_days": "$5.75",
+//   "5_days": "$4.50",
+//   "7_days": "$3.75",
+//   "14_days": "$3.00",
+// };
+
+// export const highschoolPagePricing = {
+//   "8_hours": "$7.50",
+//   "24_hours": "$10.00",
+//   "48_hours": "$6.00",
+//   "3_days": "$5.75",
+//   "5_days": "$4.50",
+//   "7_days": "$3.75",
+//   "14_days": "$3.00",
+// };
+
+// export const highschoolPagePricing = {
+//   "8_hours": "$7.50",
+//   "24_hours": "$10.00",
+//   "48_hours": "$6.00",
+//   "3_days": "$5.75",
+//   "5_days": "$4.50",
+//   "7_days": "$3.75",
+//   "14_days": "$3.00",
+// };
