@@ -17,11 +17,18 @@ const Checkout: React.FC<any> = (props) => {
   } = props;
 
   const { selectedServices } = useAdditionalServicesContext();
-  console.log("serv", selectedServices);
-  // const
-  // console.log(`${selectedPaperFormat}, ${selectedDeadline}, ${paperInstructions}, ${file}`)
+  const additionalServicesTotal = selectedServices
+    .map((service) => {
+      const intPrice = String(service.price).substring(1);
+      console.log("type", typeof intPrice);
+      console.log("service", intPrice);
+      return Number(intPrice);
+    })
+    .reduce((total, i) => total + i, 0);
 
-  const total = pageCount * 15.0 + charts * 5.0;
+  const total = pageCount * 15.0 + charts * 5.0 + additionalServicesTotal;
+
+  // const total = pageCount * 15.0 + charts * 5.0;
 
   return (
     <div className="p-4 bg-blue-200 rounded shadow-cyan-200 shadow-lg divide-y divide-gray-400 divide-solid">
@@ -55,17 +62,18 @@ const Checkout: React.FC<any> = (props) => {
             $ {(charts * 5.0).toFixed(2)}
           </p>
         </div>
-        <div className="flex justify-between items-center">
-          <p className="text-gray-600 text-sm font-thin">VIP support</p>
-          <p className="text-gray-800 font-bold">$ 0.00</p>
-        </div>
         {/* Added section to iterate through Additional services */}
         {selectedServices.length > 0 && (
           <div>
             <h5>Additional Services</h5>
             {selectedServices.map((service) => (
-              <div key={service.title} className="flex justify-between items-center">
-                <p className="text-gray-600 text-sm font-thin">{service.title}</p>
+              <div
+                key={service.title}
+                className="flex justify-between items-center"
+              >
+                <p className="text-gray-600 text-sm font-thin">
+                  {service.title}
+                </p>
                 <p className="text-gray-800 font-bold">{service.price}</p>
               </div>
             ))}
