@@ -36,7 +36,7 @@ const DivGroup = ({ items, selectedItem, handleClick }: { items: any; selectedIt
   };
 
   return (
-    <div className="flex flex-col sm:inline-flex sm:flex-row rounded-sm shadow-sm">
+    <div className="flex-1 flex-col sm:inline-flex sm:flex-row rounded-sm shadow-sm">
       {Object.entries(items).map(([title, data]) => (
         <WriterCategoryCard
           key={title}
