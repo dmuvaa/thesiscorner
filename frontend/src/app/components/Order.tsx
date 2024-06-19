@@ -13,10 +13,10 @@ import AdditionalServices from "./Checkbox";
 
 import {
   additionalServices,
-  deadline,
+  deadline as deadlines,
   writerCategory,
   paperFormat,
-  academicLevel,
+  academicLevel as academicLevels,
   paperType as paperTypes,
   discipline,
 } from "./constants";
@@ -220,6 +220,8 @@ const OrderForm: React.FunctionComponent<any> = props => {
   // }
 
   const session = useSession();
+  console.log(session);
+  console.log(academicLevels);
 
   return (
     <form>
@@ -238,7 +240,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
             </div>
             <div className="col-span-6 ">
               <ButtonGroup
-                items={academicLevel}
+                items={academicLevels}
                 selectedItem={selectedAcademicLevel}
                 handleClick={handleClickAcademicLevel}
               />
@@ -337,7 +339,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
             </div>
             <div className="md:col-span-6">
               <ButtonGroup
-                items={deadline}
+                items={deadlines}
                 selectedItem={selectedDeadline}
                 handleClick={handleClickDeadline}
               />
