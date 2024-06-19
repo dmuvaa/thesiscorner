@@ -426,17 +426,22 @@ const OrderForm: React.FunctionComponent<any> = props => {
               <label className="font-semibold">Coupons</label>
             </div>
             <div className="col-span-4 ">
-              <button disabled className="p-6 bg-blue-950 rounded text-white">
+              <button disabled className="p-6 bg-teal-700 rounded text-white">
                 Not Available
               </button>
             </div>
           </div>
         </div>
         <h3 className="text-xl font-bold mb-2">Account</h3>
-        <div className="bg-lime-500/10 p-4 rounded m-4 border border-green-600">
-          <p className="text-lime-500">
-            Your email is{" "}
-            <span className="font-bold">{session?.user?.email}</span>
+        <div className="bg-teal-500/10 p-4 rounded m-4 border border-teal-600">
+          <p className="text-teal-500">
+            {session?.user?.email ? (
+                <>
+                  Your email is <span className="font-bold">{session?.user?.email}</span>
+                </>
+              ) : (
+                "You are not logged in"
+              )}
           </p>
         </div>
       </div>

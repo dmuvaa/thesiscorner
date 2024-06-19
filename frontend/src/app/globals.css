@@ -36,3 +36,16 @@
 } 
 
 
+/* input[type="checkbox"]:checked + label .checkmark {
+  display: block;
+} */
+
+input:checked ~ label {
+  background: #006064;;
+  /* #164e63  */
+  color: white;
+}
+
+input:checked ~ label svg {
+  display: block;
+}
