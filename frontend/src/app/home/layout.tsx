@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import { SessionProvider } from "next-auth/react";
 import { CalculatorProvider } from "../components/CalculatorContext";
+// import { AdditionalServicesProvider } from "../components/contexts/AdditionalServicesContext";
 
 export const metadata: Metadata = {
   title: {

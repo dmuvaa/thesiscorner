@@ -1,4 +1,5 @@
 /** @format */
+import { useAdditionalServicesContext } from "./contexts/AdditionalServicesContext";
 
 interface CategoryData {
   title: string;
@@ -15,14 +16,24 @@ interface AdditionalServicesProps {
 }
 
 export default function AdditionalServices({ items }: AdditionalServicesProps) {
+  const { selectedServices, toggleService } = useAdditionalServicesContext();
+
   const ItemCard: React.FC<ItemCardProps> = ({ categoryData }) => {
+    const isChecked = selectedServices.some((service) => service.title === categoryData.title);
+
+    const handleClick = () => {
+      toggleService({title: categoryData.title, price: categoryData.price});
+    };
+
     return (
       <div className="group cursor-pointer">
         <input
           type="checkbox"
           name="services"
+          checked={isChecked}
+          onChange={handleClick}
           id={`service-${categoryData.title}`}
-          className="opacity-0 absolute w-6 h-6 z-10"
+          className="sr-only"
         />
         <label
           htmlFor={`service-${categoryData.title}`}
@@ -34,7 +45,9 @@ export default function AdditionalServices({ items }: AdditionalServicesProps) {
               height="24"
               viewBox="0 0 24 24"
               width="24"
-              className="absolute checkbox-unchecked"
+              className={`absolute ${!isChecked ? '' : 'hidden'}`}
+              // {`transition-transform ${isChecked ? 'text-green-500 scale-150' : ''}`}
+              // "absolute checkbox-unchecked"
             >
               <path d="M0 0h24v24H0z" fill="none" />
               <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1 .9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />

@@ -14,6 +14,8 @@ import {
   CalculatorContext,
   CalculatorContextType,
 } from "@/app/components/calculator";
+import { AdditionalServicesProvider } from "@/app/components/contexts/AdditionalServicesContext";
+
 
 const Order: React.FC = () => {
   // context
@@ -53,6 +55,7 @@ const Order: React.FC = () => {
   const [selectedGroupItem, setSelectedGroupItem] = useState(null);
 
   return (
+    <AdditionalServicesProvider>
     <div className="px-8 md:px-24 py-4 relative">
       <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
         <div className="md:col-span-6 ">
@@ -106,6 +109,7 @@ const Order: React.FC = () => {
         </div>
       </div>
     </div>
+    </AdditionalServicesProvider>
   );
 };
 
