@@ -208,20 +208,20 @@ const OrderForm: React.FunctionComponent<any> = props => {
     setSelectedGroupItem(index);
   };
 
-  // const { data: session, status} = useSession();
+  const { data: session, status} = useSession();
   // const data = JSON.stringify(session)
   // const dat = JSON.parse(data)
   // try {
-  //   if (typeof(session) === object) {
+  //   if (typeof(session) === Object) {
   //   console.log(`session is ${session.user.name}`);
   // }
   // }catch (e) {
   //   console.error(`session error ${e}`)
   // }
 
-  const session = useSession();
-  console.log(session);
-  console.log(academicLevels);
+  // const session = useSession();
+  // console.log(session);
+  // console.log(academicLevels);
 
   return (
     <form>
@@ -436,7 +436,7 @@ const OrderForm: React.FunctionComponent<any> = props => {
         <div className="bg-lime-500/10 p-4 rounded m-4 border border-green-600">
           <p className="text-lime-500">
             Your email is{" "}
-            <span className="font-bold">{session.data?.user?.email}</span>
+            <span className="font-bold">{session?.user?.email}</span>
           </p>
         </div>
       </div>

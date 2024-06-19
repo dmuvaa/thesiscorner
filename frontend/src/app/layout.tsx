@@ -1,13 +1,9 @@
 /** @format */
 
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
 import "./globals.css";
-// import Navbar from "./components/Navbar";
 import { Mulish } from "next/font/google";
-// import { SessionProvider } from "next-auth/react";
 
-// const inter = Inter({ subsets: ["latin"] });
 const mulish = Mulish({
   subsets: ["latin"],
   display: "swap",
