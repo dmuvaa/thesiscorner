@@ -15,13 +15,7 @@
   border-radius: 0.5em;
   border: 1px solid rgb(76, 0, 255);
   cursor: pointer;
-
 } 
-
-
-/* input[type="checkbox"]:checked + label .checkmark {
-  display: block;
-} */
 
 input:checked ~ label {
   background: #006064;;
@@ -33,34 +27,33 @@ input:checked ~ label svg {
   display: block;
 }
 
-input:checked ~ .checkbox-unchecked {
+/* input:checked ~ .checkbox-unchecked {
   display: none;
+} */
+
+/* input:checked ~ .checkbox-checked {
+  display: block;
+  color: white;
+} */
+
+/* ::view-transition-new */
+input:checked ~ label svg.checkbox-unchecked {
+  /* background: #059669;  */
+  border-color: #ff0202; /* equivalent to border-green-500 in tailwind */
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); /* equivalent to ring and ring-green-500 utilities in tailwind */
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  
 }
 
-input:checked ~ .checkbox-checked {
+input:checked ~ label svg.checkbox-unchecked {
   display: block;
   color: white;
 }
 
-/* ::view-transition-new */
-input:checked ~ label {
-  background: #059669; /* equivalent to bg-green-500 in tailwind */
-  border-color: #059669; /* equivalent to border-green-500 in tailwind */
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); /* equivalent to ring and ring-green-500 utilities in tailwind */
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-  margin-bottom: 0.25rem;
-}
-
-input:checked ~ label svg.checkbox-unchecked {
-  display: none;
-}
-
 input:checked ~ label svg.group-checked {
   display: block;
-  transform: scale(1.5); /* Change size of the checkmark */
-  transition: all 0.3s ease;
-  color: white !important;
+  /* transform: scale(1.5); */
 }
 
 input:not(:checked) ~ label {
