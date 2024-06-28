@@ -2,35 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  /* font-size: 18px; */
-  font-family: Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-}
-
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
+} 
 
 ::-webkit-file-upload-button {
   background: rgb(194, 205, 255);
@@ -39,5 +15,47 @@ body {
   border-radius: 0.5em;
   border: 1px solid rgb(76, 0, 255);
   cursor: pointer;
+} 
 
+input:checked ~ label {
+  background: #006064;;
+  /* #164e63  */
+  color: white;
+}
+
+input:checked ~ label svg {
+  display: block;
+}
+
+/* input:checked ~ .checkbox-unchecked {
+  display: none;
+} */
+
+/* input:checked ~ .checkbox-checked {
+  display: block;
+  color: white;
+} */
+
+/* ::view-transition-new */
+input:checked ~ label svg.checkbox-unchecked {
+  /* background: #059669;  */
+  border-color: #ff0202; /* equivalent to border-green-500 in tailwind */
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); /* equivalent to ring and ring-green-500 utilities in tailwind */
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  
+}
+
+input:checked ~ label svg.checkbox-unchecked {
+  display: block;
+  color: white;
+}
+
+input:checked ~ label svg.group-checked {
+  display: block;
+  /* transform: scale(1.5); */
+}
+
+input:not(:checked) ~ label {
+  transition: all 0.3s ease;
 }

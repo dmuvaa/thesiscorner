@@ -8,15 +8,26 @@ import os
 db = SQLAlchemy()
 login_manager = LoginManager()
 
+
 def create_app():
     load_dotenv()
     app = Flask(__name__)
-    
+
+    DATABASE_URI=os.getenv('SQLALCHEMY_DATABASE_URI')
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+
+    if not DATABASE_URI:
+            raise ValueError("DATABASE_URL environment variable is not set")
+
+    # Log the retrieved URL
+    app.logger.info(f"Database URL: {DATABASE_URI}")
 
     db.init_app(app)
     login_manager.init_app(app)
+
+    with app.app_context():
+        db.create_all()
 
     login_manager.login_view = 'views.login'
 
@@ -29,12 +40,10 @@ def create_app():
     from .auth import routes as auth_routes
     app.register_blueprint(auth_blueprint)
 
-
     from .views.routes import views as views_blueprint
     from .views import routes as views_routes
     app.register_blueprint(views_blueprint, url_prefix='/api')
 
     CORS(app, resources={r"/api/*": {"origins": "*"}})
-
 
     return app

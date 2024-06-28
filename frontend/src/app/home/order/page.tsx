@@ -1,7 +1,7 @@
 /** @format */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import OrderForm from "@/app/components/Order";
 import Checkout from "@/app/components/Payment";
 import {
@@ -10,15 +10,26 @@ import {
   deadline,
 } from "@/app/components/constants";
 
+import {
+  CalculatorContext,
+  CalculatorContextType,
+} from "@/app/components/calculator";
+import { AdditionalServicesProvider } from "@/app/components/contexts/AdditionalServicesContext";
+
+
 const Order: React.FC = () => {
+  // context
+  const { academiclevel, deadlinee, page } =
+    useContext<CalculatorContextType>(CalculatorContext);
+  
   const [selectedAcademicLevel, setSelectedAcademicLevel] = useState(
-    academicLevel[1],
+    academiclevel
   );
   const [selectedPaperFormat, setSelectedPaperFormat] = useState(
-    paperFormat[1],
+    paperFormat[1]
   );
   const [selectedDeadline, setSelectedDeadline] = useState(
-    deadline[deadline.length - 1],
+    deadline[deadline.length - 1]
   );
 
   // topic and settopic
@@ -44,6 +55,7 @@ const Order: React.FC = () => {
   const [selectedGroupItem, setSelectedGroupItem] = useState(null);
 
   return (
+    <AdditionalServicesProvider>
     <div className="px-8 md:px-24 py-4 relative">
       <div className="grid frid-cols-1 md:grid-cols-8 gap-4">
         <div className="md:col-span-6 ">
@@ -97,6 +109,7 @@ const Order: React.FC = () => {
         </div>
       </div>
     </div>
+    </AdditionalServicesProvider>
   );
 };
 

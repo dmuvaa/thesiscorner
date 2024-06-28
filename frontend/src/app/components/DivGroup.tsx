@@ -15,7 +15,7 @@ const DivGroup = ({ items, selectedItem, handleClick }: { items: any; selectedIt
   }) => {
     return (
       <div
-        className={"py-3 px-4 flex flex-col gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200  shadow-sm hover:bg-blue-200 divide-y divide-solid " + (categoryData.title === selectedItem ? "bg-cyan-900 text-white hover:bg-cyan-600" : "bg-white text-gray-800")}
+        className={"py-3 px-4 flex flex-col gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm  focus:z-10 border border-gray-200  shadow-sm hover:bg-teal-200 divide-y divide-solid " + (categoryData.title === selectedItem ? "bg-teal-900 text-white hover:bg-teal-600" : "bg-white text-gray-800")}
         onClick={() => handleClick(categoryData.title)}
       >
         <div className="flex p-1 justify-between font-medium">
@@ -36,7 +36,7 @@ const DivGroup = ({ items, selectedItem, handleClick }: { items: any; selectedIt
   };
 
   return (
-    <div className="flex flex-col sm:inline-flex sm:flex-row rounded-sm shadow-sm">
+    <div className="flex-1 flex-col sm:inline-flex sm:flex-row rounded-sm shadow-sm">
       {Object.entries(items).map(([title, data]) => (
         <WriterCategoryCard
           key={title}

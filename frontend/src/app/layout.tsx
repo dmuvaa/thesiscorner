@@ -1,12 +1,15 @@
 /** @format */
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-// import { SessionProvider } from "next-auth/react";
+import { Mulish } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const mulish = Mulish({
+  subsets: ["latin"],
+  display: "swap",
+  style: ["normal", "italic"],
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -24,11 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     // <SessionProvider >
-      <html lang="en">
-        <body>
-          <main>{children}</main>
-        </body>
-      </html>
+    <html lang="en" className={mulish.className}>
+      <body>
+        <main>{children}</main>
+      </body>
+    </html>
     // </SessionProvider>
   );
 }

@@ -1,4 +1,6 @@
 /** @format */
+"use client";
+
 import { authenticate } from "../lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import {
@@ -15,11 +17,13 @@ const LoginForm = () => {
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
         type="text"
         placeholder="Username"
+        required
       />
       <input
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
         type="password"
         placeholder="Password"
+        required
       />
       <LoginButton />
       <div

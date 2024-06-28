@@ -1,22 +1,31 @@
-/** @format */
-import React from "react";
+import React from 'react';
+import '../globals.css';
 
-const ButtonGroup = ({ items, selectedItem, handleClick }: { items: any[], selectedItem: number, handleClick: (item: String, event: React.MouseEvent<HTMLButtonElement>) => void}) => {
+interface ButtonGroupProps {
+  items: string[];
+  selectedItem: string;
+  handleClick: (item: string, event: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ items, selectedItem, handleClick }) => {
   return (
-    <div className="flex flex-col sm:inline-flex sm:flex-row rounded-sm shadow-sm ">
-      {items.map((item: any, index: any) => (
+    <div className="flex flex-wrap justify-between w-full">
+      {items.map((item, index) => {
+        return(
         <button
           key={index}
-          className={`py-3 grow px-4 inline-flex items-center gap-1 md:gap-x-2 -mt-px -ms-px md:first:rounded-s-lg md:first:ms-0 md:last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200  shadow-sm hover:bg-blue-200 ${item === selectedItem ? "bg-cyan-900 text-white hover:bg-cyan-600" : "bg-white text-gray-800 "} 
-            `}
+          className={`flex-1 py-3 px-4 text-center border border-gray-200 shadow-sm ${
+            index === 0 ? 'md:rounded-l-lg' : ''} ${index === items.length - 1 ? 'md:rounded-r-lg' : ''} ${
+            item === selectedItem ? "bg-teal-900 text-white hover:bg-teal-600" : "bg-white text-gray-800 hover:bg-teal-200"
+          }`}
           onClick={(event) => handleClick(item, event)}
         >
           {item}
         </button>
-      ))}
+        );
+})}
     </div>
-  );
+    );
 };
 
 export default ButtonGroup;
